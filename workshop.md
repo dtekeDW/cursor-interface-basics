@@ -2,7 +2,7 @@
 
 ## Meta
 
-- **Version:** v0.1.0  
+- **Version:** v0.1.1  
 - **Updated:** 2026-04-07  
 - **Format:** ~30 min talk + **10 min** Q&A  
 - **Audience:** Developers with **basic → light/medium** AI tool experience  
@@ -16,7 +16,7 @@
 
 | # | Block | Min | Materials |
 | - | ----- | --- | --------- |
-| 1 | Intro + framing | ~4 | [presentation](output/sections/01/presentation.md) · [slides](output/sections/01/slides.md) |
+| 1 | Intro + framing + **shortcuts teaser** | ~4 | [presentation](output/sections/01/presentation.md) · [slides](output/sections/01/slides.md) |
 | 2 | Interface + `@` + **context window** | ~6 | [presentation](output/sections/02/presentation.md) · [slides](output/sections/02/slides.md) |
 | 3 | Modes (core) | ~9–10 | [presentation](output/sections/03/presentation.md) · [slides](output/sections/03/slides.md) |
 | 4 | Rules + `AGENTS.md` | ~4–5 | [presentation](output/sections/04/presentation.md) · [slides](output/sections/04/slides.md) |
@@ -44,6 +44,7 @@
 - Not every setting today—**when** Cursor helps day-to-day.  
 - Cursor: **VS Code–compatible** + **AI-first** agent UI (not “just a wrapper”).  
 - **Three takeaways:** find your way in **unfamiliar code** → **plan** bigger changes → **debug** more systematically.  
+- **Shortcuts teaser:** show **Command Palette** (⌘⇧P / Ctrl+Shift+P) + **2–3** daily bindings (e.g. new chat, open agent panel, model picker)—full table on **[cheatsheet.md](cheatsheet.md)**.  
 
 ### 2 — Interface + `@` + context (~6 min)
 
@@ -74,7 +75,8 @@
 
 - **A)** Foreign repo: Ask → Plan → Agent. **B)** UI/bug: image or browser context → Agent/Debug.  
 - **~60 s MCP:** external tools/data—[MCP](https://cursor.com/docs/mcp.md).  
-- **What’s next:** [Changelog](https://cursor.com/changelog.md) / Cursor 3 messaging—link only.  
+- **Cursor 3 (where to mention it):** end of talk, **Section 06** slides—one **teaser slide**: product moves in **generations** (Cursor 2 vs **Cursor 3**); **no feature list** unless you checked sources same week. Point to **[Changelog](https://cursor.com/changelog.md)** + official **cursor.com** posts; today’s UI may still be “2.x-style” for many teams.  
+- **Handout:** [cheatsheet.md](cheatsheet.md) (shortcuts + modes).  
 
 ## Parking lot (Q&A)
 

@@ -2,6 +2,22 @@
 
 *Verify shortcuts and slash commands in **your** Cursor build (macOS vs Windows).*
 
+## Keyboard shortcuts (common)
+
+Defaults overlap VS Code; **Cursor may remap**—confirm in **Keyboard Shortcuts** or [Help: Keyboard shortcuts](https://cursor.com/help/customization/keyboard-shortcuts.md).
+
+| Action | macOS | Windows / Linux |
+| ------ | ----- | ----------------- |
+| **Command Palette** | ⌘⇧P | Ctrl+Shift+P |
+| **New agent / chat tab** (typical) | ⌘T or ⌘N | Ctrl+T / Ctrl+N — *verify* |
+| **Open AI / agent panel** (typical) | ⌘I or ⌘L | Ctrl+I / Ctrl+L — *verify* |
+| **Toggle sidebar** | ⌘B | Ctrl+B |
+| **Search in files** | ⌘⇧F | Ctrl+Shift+F |
+| **Model picker** (common binding) | ⌘⇧/ | Ctrl+Shift+/ — *verify* |
+| **Mode cycle** (if enabled) | ⇧Tab in input | Shift+Tab — *verify* |
+
+**Tip:** Command Palette → type *Cursor* or *Chat* to see **current** bindings on your machine.
+
 ## Modes (mnemonic)
 
 | Mode | Use for |

@@ -15,6 +15,7 @@
 - [ ] Set expectation: **not** every setting—**practical** use today.
 - [ ] Cursor = **VS Code–compatible** + **AI-first** agent UI.
 - [ ] **Three takeaways:** unfamiliar code · **plan** big work · **debug** systematically.
+- [ ] **Shortcuts:** Command Palette (⌘⇧P / Ctrl+Shift+P) + **2–3** bindings you actually use; say “full list → **cheatsheet**.”
 - [ ] Point to [llms.txt](https://cursor.com/llms.txt) for link rot.
 - [ ] Transition: open agent panel → Section 02.
 

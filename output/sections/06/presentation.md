@@ -15,7 +15,8 @@
 - [ ] **Workflow A:** strange repo → **Ask** → **Plan** → **Agent**.
 - [ ] **Workflow B:** UI/bug → screenshot / browser context → **Agent** or **Debug**.
 - [ ] **~60 s MCP** teaser: external tools—[MCP](https://cursor.com/docs/mcp.md).
-- [ ] **What’s next:** [Changelog](https://cursor.com/changelog.md) / product updates.
+- [ ] **Cursor 3 teaser:** generations evolve UI/agent experience—**Changelog** + official site; don’t invent feature claims.
+- [ ] **Handout:** [cheatsheet.md](../../../cheatsheet.md).
 - [ ] Thank you → **Q&A (10 min)**.
 
 ## Fallback

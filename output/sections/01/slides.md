@@ -32,6 +32,15 @@ footer: 'Cursor basics — Section 01'
 
 ---
 
+# Essential shortcuts
+
+- **Command Palette:** ⌘⇧P · **Ctrl+Shift+P** — search *Cursor* / *Chat* to see **your** bindings.
+- Typical (verify): **new chat tab**, **open agent panel**, **model picker**, **sidebar**.
+
+**Full table:** [cheatsheet.md](../../../cheatsheet.md) · [Keyboard shortcuts](https://cursor.com/help/customization/keyboard-shortcuts.md)
+
+---
+
 # Docs you can trust
 
 - **Hub:** [cursor.com/docs](https://cursor.com/docs)
