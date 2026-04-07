@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Icon } from '#components'
 import type { WeatherMetric } from '~/types/weather'
 
 const props = defineProps<{
@@ -15,7 +16,7 @@ const props = defineProps<{
     >
       <div class="mb-5 flex items-center justify-between gap-2">
         <p class="text-[11px] font-semibold tracking-[0.1em] text-slate-400 uppercase">{{ metric.label }}</p>
-        <span class="material-symbols-outlined text-primary text-lg">{{ metric.icon }}</span>
+        <Icon :name="metric.icon" class="text-3xl text-primary" />
       </div>
 
       <p class="text-5xl font-semibold leading-none sm:text-4xl lg:text-5xl">

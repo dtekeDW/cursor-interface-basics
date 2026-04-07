@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { Icon } from '#components'
+
 const navItems = [
-  { id: 'dashboard', label: 'Dashboard', icon: 'dashboard', active: true },
-  { id: 'forecast', label: 'Forecast', icon: 'calendar_month', active: false },
-  { id: 'radar', label: 'Radar', icon: 'map', active: false },
-  { id: 'settings', label: 'Settings', icon: 'settings', active: false },
+  { id: 'dashboard', label: 'Dashboard', icon: 'ph:squares-four', active: true },
+  { id: 'forecast', label: 'Forecast', icon: 'ph:calendar-dots', active: false },
+  { id: 'radar', label: 'Radar', icon: 'ph:map-trifold', active: false },
+  { id: 'settings', label: 'Settings', icon: 'ph:gear-six', active: false },
 ]
 </script>
 
@@ -18,7 +20,7 @@ const navItems = [
           :class="item.active ? 'bg-primary/15 text-primary shadow-[0_0_20px_rgba(255,182,141,0.2)]' : 'text-slate-400 hover:text-white'"
           type="button"
         >
-          <span class="material-symbols-outlined text-lg">{{ item.icon }}</span>
+          <Icon :name="item.icon" class="text-2xl" />
           <span class="mt-1">{{ item.label }}</span>
         </button>
       </div>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Icon } from '#components'
 import type { RadarCard } from '~/types/weather'
 
 defineProps<{
@@ -22,11 +23,11 @@ defineProps<{
     </div>
 
     <div class="absolute bottom-4 right-4 flex gap-2 sm:bottom-6 sm:right-6">
-      <button class="grid h-10 w-10 place-items-center rounded-full border border-white/15 bg-[#1b1a26]/65 text-white transition hover:bg-[#1b1a26]" type="button" aria-label="Zoom in radar">
-        <span class="material-symbols-outlined text-lg">add</span>
+      <button class="grid h-12 w-12 place-items-center rounded-full border border-white/15 bg-[#1b1a26]/65 text-white transition hover:bg-[#1b1a26]" type="button" aria-label="Zoom in radar">
+        <Icon name="ph:plus" class="text-2xl" />
       </button>
-      <button class="grid h-10 w-10 place-items-center rounded-full border border-white/15 bg-[#1b1a26]/65 text-white transition hover:bg-[#1b1a26]" type="button" aria-label="Zoom out radar">
-        <span class="material-symbols-outlined text-lg">remove</span>
+      <button class="grid h-12 w-12 place-items-center rounded-full border border-white/15 bg-[#1b1a26]/65 text-white transition hover:bg-[#1b1a26]" type="button" aria-label="Zoom out radar">
+        <Icon name="ph:minus" class="text-2xl" />
       </button>
     </div>
   </section>

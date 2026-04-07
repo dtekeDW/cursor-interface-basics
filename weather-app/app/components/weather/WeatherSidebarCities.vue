@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Icon } from '#components'
 import type {
   CityId,
   WeatherCity,
@@ -56,7 +57,7 @@ const handleSelect = (cityId: CityId) => {
 
           <div class="flex items-center justify-between">
             <p class="text-sm text-slate-400">{{ city.condition }}</p>
-            <span class="material-symbols-outlined text-sm text-slate-300">{{ city.icon }}</span>
+            <Icon :name="city.icon" class="text-xl text-slate-300" />
           </div>
         </button>
       </div>

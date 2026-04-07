@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Icon } from '#components'
 import type { WeeklyForecastItem } from '~/types/weather'
 import { computed } from 'vue'
 
@@ -26,7 +27,7 @@ const getBarWidth = (high: number, low: number) => {
         class="flex items-center justify-between gap-3 rounded-xl px-3 py-3 transition hover:bg-white/6"
       >
         <span class="w-10 text-sm font-medium text-slate-300">{{ day.day }}</span>
-        <span class="material-symbols-outlined text-primary">{{ day.icon }}</span>
+        <Icon :name="day.icon" class="text-2xl text-primary" />
 
         <div class="flex flex-1 items-center gap-3">
           <span class="text-xs font-semibold text-slate-500">{{ day.low }}°</span>
@@ -45,7 +46,7 @@ const getBarWidth = (high: number, low: number) => {
         class="flex items-center justify-between rounded-xl border border-white/10 bg-white/4 px-4 py-3"
       >
         <span class="w-14 text-xl text-slate-100 leading-none">{{ day.day }}</span>
-        <span class="material-symbols-outlined text-primary">{{ day.icon }}</span>
+        <Icon :name="day.icon" class="text-3xl text-primary" />
         <div class="flex items-baseline gap-3">
           <span class="text-2xl font-semibold text-white leading-none">{{ day.high }}°</span>
           <span class="text-2xl text-slate-500 leading-none">{{ day.low }}°</span>

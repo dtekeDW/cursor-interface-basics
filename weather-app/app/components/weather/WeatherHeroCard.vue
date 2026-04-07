@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Icon } from '#components'
 import type { CurrentWeather } from '~/types/weather'
 
 defineProps<{
@@ -27,7 +28,7 @@ defineProps<{
           <h2 class="text-4xl font-bold text-white lg:text-6xl">{{ current.locationLabel }}</h2>
           <p class="mt-2 flex items-center gap-2 text-lg text-primary">
             {{ current.condition }}
-            <span class="material-symbols-outlined">{{ current.icon }}</span>
+            <Icon :name="current.icon" class="text-3xl" />
           </p>
         </div>
       </div>

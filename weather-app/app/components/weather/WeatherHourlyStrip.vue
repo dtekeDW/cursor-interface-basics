@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Icon } from '#components'
 import type { HourlyForecastItem } from '~/types/weather'
 
 const props = defineProps<{
@@ -10,7 +11,7 @@ const props = defineProps<{
   <section>
     <div class="mb-4 flex items-center justify-between">
       <h3 class="text-[11px] font-bold tracking-[0.16em] text-slate-500 uppercase">Hourly Outlook</h3>
-      <span class="material-symbols-outlined text-slate-500">schedule</span>
+      <Icon name="ph:clock-countdown" class="text-xl text-slate-500" />
     </div>
 
     <div class="hide-scrollbar flex gap-3 overflow-x-auto pb-2 sm:gap-4">
@@ -26,7 +27,7 @@ const props = defineProps<{
           {{ hour.time }}
         </p>
 
-        <span class="material-symbols-outlined my-3 text-3xl text-primary">{{ hour.icon }}</span>
+        <Icon :name="hour.icon" class="my-3 text-5xl text-primary" />
 
         <p class="text-3xl font-semibold leading-none">{{ hour.temperature }}°</p>
       </article>
