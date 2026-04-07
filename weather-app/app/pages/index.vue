@@ -69,7 +69,7 @@ useHead({
         @add-city="openAddCityModal"
       />
 
-      <main class="flex-1 space-y-10 lg:pt-4">
+      <main class="min-w-0 flex-1 space-y-10 lg:pt-4">
         <p
           v-if="activeCityError"
           class="rounded-xl border border-rose-400/30 bg-rose-400/10 px-4 py-3 text-sm text-rose-200"
