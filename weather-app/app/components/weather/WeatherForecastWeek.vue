@@ -5,6 +5,7 @@ import { computed } from 'vue'
 
 const props = defineProps<{
   weekly: WeeklyForecastItem[]
+  isLoading?: boolean
 }>()
 
 const maxTemperature = computed(() => Math.max(...props.weekly.map(item => item.high)))
@@ -26,7 +27,16 @@ function getBarOffset(low: number) {
       7-Day Forecast
     </h3>
 
-    <div class="hidden rounded-[2rem] border border-white/5 bg-white/4 p-6 md:flex md:flex-col md:gap-2">
+    <div v-if="props.isLoading" class="hidden rounded-[2rem] border border-white/5 bg-white/4 p-6 md:flex md:flex-col md:gap-2">
+      <div v-for="item in 7" :key="`desktop-weekly-skeleton-${item}`" class="flex items-center gap-4 rounded-2xl p-4">
+        <div class="h-4 w-10 rounded bg-white/12 animate-pulse" />
+        <div class="h-6 w-6 rounded-full bg-white/12 animate-pulse" />
+        <div class="h-1.5 flex-1 rounded-full bg-white/10" />
+        <div class="h-4 w-8 rounded bg-white/12 animate-pulse" />
+      </div>
+    </div>
+
+    <div v-else class="hidden rounded-[2rem] border border-white/5 bg-white/4 p-6 md:flex md:flex-col md:gap-2">
       <article
         v-for="day in props.weekly"
         :key="day.id"
@@ -48,7 +58,13 @@ function getBarOffset(low: number) {
       </article>
     </div>
 
-    <div class="space-y-3 md:hidden">
+    <div v-if="props.isLoading" class="space-y-3 md:hidden">
+      <div v-for="item in 5" :key="`mobile-weekly-skeleton-${item}`" class="rounded-xl border border-white/10 bg-white/4 px-4 py-3">
+        <div class="h-4 w-24 rounded bg-white/12 animate-pulse" />
+      </div>
+    </div>
+
+    <div v-else class="space-y-3 md:hidden">
       <article
         v-for="day in props.weekly"
         :key="`mobile-${day.id}`"

@@ -1,6 +1,32 @@
-export type CityId = 'koeln' | 'frankfurt' | 'hannover' | 'bremen' | 'san-francisco'
+export type CityId = string
 
-export interface WeatherCity {
+export type CityMeta = {
+  id: CityId
+  name: string
+  country: string
+  latitude: number
+  longitude: number
+  timezone: string
+  heroImageUrl: string
+  heroImageAlt: string
+  radarImageUrl: string
+  radarImageAlt: string
+}
+
+export type GeocodeResult = {
+  id: string
+  name: string
+  country: string
+  latitude: number
+  longitude: number
+  timezone: string
+}
+
+export type GeocodeApiResponse = {
+  results: GeocodeResult[]
+}
+
+export type WeatherCity = {
   id: CityId
   name: string
   localTime: string
@@ -9,7 +35,7 @@ export interface WeatherCity {
   icon: string
 }
 
-export interface CurrentWeather {
+export type CurrentWeather = {
   locationLabel: string
   timeLabel: string
   temperature: number
@@ -21,7 +47,7 @@ export interface CurrentWeather {
   heroImageAlt: string
 }
 
-export interface HourlyForecastItem {
+export type HourlyForecastItem = {
   id: string
   time: string
   temperature: number
@@ -29,7 +55,7 @@ export interface HourlyForecastItem {
   isNow?: boolean
 }
 
-export interface WeeklyForecastItem {
+export type WeeklyForecastItem = {
   id: string
   day: string
   high: number
@@ -37,7 +63,7 @@ export interface WeeklyForecastItem {
   icon: string
 }
 
-export interface WeatherMetric {
+export type WeatherMetric = {
   id: string
   label: string
   value: string
@@ -46,17 +72,44 @@ export interface WeatherMetric {
   icon: string
 }
 
-export interface RadarCard {
+export type RadarCard = {
   imageUrl: string
   imageAlt: string
   precipitationLabel: string
 }
 
-export interface CityWeather {
-  city: WeatherCity
+export type WeatherSnapshot = {
   current: CurrentWeather
   hourly: HourlyForecastItem[]
   weekly: WeeklyForecastItem[]
   metrics: WeatherMetric[]
   radar: RadarCard
+}
+
+export type ForecastCoreSnapshot = {
+  localTime: string
+  current: {
+    timeLabel: string
+    temperature: number
+    high: number
+    low: number
+    condition: string
+    icon: string
+  }
+  hourly: HourlyForecastItem[]
+  weekly: WeeklyForecastItem[]
+  metrics: WeatherMetric[]
+  precipitationPercent: number
+}
+
+export type ForecastApiResponse = {
+  snapshot: ForecastCoreSnapshot
+}
+
+export type ApiErrorShape = {
+  error: {
+    code: string
+    message: string
+  }
+  status: number
 }

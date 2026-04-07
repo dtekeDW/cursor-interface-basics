@@ -18,4 +18,12 @@ export default defineNuxtConfig({
   css: [
     '@unocss/reset/tailwind-v4.css',
   ],
+
+  runtimeConfig: {
+    public: {
+      weatherForecastBaseUrl: 'https://api.open-meteo.com',
+      weatherGeocodeBaseUrl: 'https://geocoding-api.open-meteo.com',
+      weatherCacheTtlMs: 15 * 60 * 1000,
+    },
+  },
 })

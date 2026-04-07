@@ -33,4 +33,13 @@ body {
   background: #343440;
   border-radius: 9999px;
 }
+
+@keyframes weather-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
 </style>

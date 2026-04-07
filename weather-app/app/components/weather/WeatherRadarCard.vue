@@ -4,12 +4,16 @@ import { Icon } from '#components'
 
 defineProps<{
   radar: RadarCard
+  isLoading?: boolean
 }>()
 </script>
 
 <template>
   <section class="group relative h-96 overflow-hidden rounded-[2rem] border border-white/5 shadow-2xl">
-    <img :src="radar.imageUrl" :alt="radar.imageAlt" class="h-full w-full object-cover">
+    <template v-if="isLoading">
+      <div class="h-full w-full bg-[linear-gradient(115deg,rgba(255,255,255,0.05)_20%,rgba(255,255,255,0.12)_40%,rgba(255,255,255,0.05)_60%)] bg-[length:200%_100%] animate-[weather-shimmer_2s_linear_infinite]" />
+    </template>
+    <img v-else :src="radar.imageUrl" :alt="radar.imageAlt" class="h-full w-full object-cover">
 
     <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0d0d18]/25 to-transparent" />
 

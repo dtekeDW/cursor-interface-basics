@@ -4,6 +4,7 @@ import { Icon } from '#components'
 
 const props = defineProps<{
   hourly: HourlyForecastItem[]
+  isLoading?: boolean
 }>()
 </script>
 
@@ -17,7 +18,20 @@ const props = defineProps<{
     </div>
 
     <div class="hide-scrollbar -mx-2 flex gap-4 overflow-x-auto px-2 pb-4">
+      <template v-if="props.isLoading">
+        <article
+          v-for="item in 7"
+          :key="`hourly-skeleton-${item}`"
+          class="w-28 shrink-0 rounded-3xl border border-white/10 bg-white/4 p-6 text-center"
+        >
+          <div class="mx-auto h-3 w-10 rounded bg-white/12 animate-pulse" />
+          <div class="mx-auto my-4 h-8 w-8 rounded-full bg-white/12 animate-pulse" />
+          <div class="mx-auto h-6 w-12 rounded bg-white/12 animate-pulse" />
+        </article>
+      </template>
+
       <article
+        v-else
         v-for="hour in props.hourly"
         :key="hour.id"
         class="w-28 shrink-0 rounded-3xl border p-6 text-center transition"

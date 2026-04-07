@@ -1,19 +1,36 @@
 <script setup lang="ts">
 import { useHead, useSeoMeta } from '#imports'
+import type { GeocodeResult } from '~/types/weather'
+import WeatherAddCityModal from '~/components/weather/WeatherAddCityModal.vue'
 import WeatherForecastWeek from '~/components/weather/WeatherForecastWeek.vue'
 import WeatherHeroCard from '~/components/weather/WeatherHeroCard.vue'
 import WeatherHourlyStrip from '~/components/weather/WeatherHourlyStrip.vue'
 import WeatherMetricGrid from '~/components/weather/WeatherMetricGrid.vue'
 import WeatherRadarCard from '~/components/weather/WeatherRadarCard.vue'
 import WeatherSidebarCities from '~/components/weather/WeatherSidebarCities.vue'
-import { useWeatherMock } from '~/composables/useWeatherMock'
+import { useWeatherData } from '~/composables/useWeatherData'
+import { ref } from 'vue'
 
 const {
   activeCityId,
+  activeCityError,
   activeWeather,
+  addCity,
   cities,
+  isActiveCityLoading,
+  isSidebarLoading,
   selectCity,
-} = useWeatherMock()
+} = useWeatherData()
+
+const isAddCityModalOpen = ref(false)
+
+const openAddCityModal = () => {
+  isAddCityModalOpen.value = true
+}
+
+const handleAddCity = async (city: GeocodeResult) => {
+  await addCity(city)
+}
 
 useSeoMeta({
   title: 'Celestial Weather Dashboard',
@@ -44,21 +61,34 @@ useHead({
 <template>
   <div class="mx-auto max-w-[1600px] px-4 pt-20 pb-32 sm:px-6 lg:px-8 lg:pb-12">
     <div class="space-y-6 lg:flex lg:gap-8 lg:space-y-0">
-      <WeatherSidebarCities :cities="cities" :active-city-id="activeCityId" @select="selectCity" />
+      <WeatherSidebarCities
+        :cities="cities"
+        :active-city-id="activeCityId"
+        :is-loading="isSidebarLoading"
+        @select="selectCity"
+        @add-city="openAddCityModal"
+      />
 
       <main class="flex-1 space-y-10 lg:pt-4">
-        <WeatherHeroCard :current="activeWeather.current" />
+        <p
+          v-if="activeCityError"
+          class="rounded-xl border border-rose-400/30 bg-rose-400/10 px-4 py-3 text-sm text-rose-200"
+        >
+          {{ activeCityError }}
+        </p>
 
-        <WeatherHourlyStrip :hourly="activeWeather.hourly" />
+        <WeatherHeroCard :current="activeWeather.current" :is-loading="isActiveCityLoading" />
+
+        <WeatherHourlyStrip :hourly="activeWeather.hourly" :is-loading="isActiveCityLoading" />
 
         <div class="grid grid-cols-1 gap-8 xl:grid-cols-12">
           <div class="xl:col-span-4">
-            <WeatherForecastWeek :weekly="activeWeather.weekly" />
+            <WeatherForecastWeek :weekly="activeWeather.weekly" :is-loading="isActiveCityLoading" />
           </div>
 
           <div class="space-y-8 xl:col-span-8">
-            <WeatherRadarCard :radar="activeWeather.radar" />
-            <WeatherMetricGrid :metrics="activeWeather.metrics" />
+            <WeatherRadarCard :radar="activeWeather.radar" :is-loading="isActiveCityLoading" />
+            <WeatherMetricGrid :metrics="activeWeather.metrics" :is-loading="isActiveCityLoading" />
           </div>
         </div>
 
@@ -70,4 +100,6 @@ useHead({
       </main>
     </div>
   </div>
+
+  <WeatherAddCityModal v-model="isAddCityModalOpen" @select="handleAddCity" />
 </template>

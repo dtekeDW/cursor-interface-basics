@@ -8,21 +8,35 @@ import { Icon } from '#components'
 const props = defineProps<{
   cities: WeatherCity[]
   activeCityId: CityId
+  isLoading?: boolean
 }>()
 
 const emit = defineEmits<{
   select: [cityId: CityId]
+  addCity: []
 }>()
 
 function handleSelect(cityId: CityId) {
   emit('select', cityId)
+}
+
+function handleAddCity() {
+  emit('addCity')
 }
 </script>
 
 <template>
   <section class="space-y-4 lg:w-80 lg:shrink-0 lg:space-y-6">
     <div class="hide-scrollbar flex gap-3 overflow-x-auto pb-2 lg:hidden">
+      <template v-if="props.isLoading">
+        <div v-for="item in 3" :key="`mobile-skeleton-${item}`" class="min-w-[128px] rounded-xl border border-white/10 bg-white/5 p-4">
+          <div class="h-3 w-16 rounded bg-white/12 animate-pulse" />
+          <div class="mt-3 h-9 w-12 rounded bg-white/12 animate-pulse" />
+        </div>
+      </template>
+
       <button
+        v-else
         v-for="city in props.cities"
         :key="city.id"
         class="min-w-[128px] rounded-xl border p-4 text-left transition"
@@ -47,8 +61,17 @@ function handleSelect(cityId: CityId) {
       </h3>
 
       <div class="space-y-3 overflow-y-auto pr-2">
+        <template v-if="props.isLoading">
+          <div v-for="item in 4" :key="`desktop-skeleton-${item}`" class="w-full rounded-xl border border-white/10 bg-white/4 p-4">
+            <div class="h-3 w-24 rounded bg-white/12 animate-pulse" />
+            <div class="mt-3 h-7 w-28 rounded bg-white/12 animate-pulse" />
+            <div class="mt-3 h-3 w-20 rounded bg-white/12 animate-pulse" />
+          </div>
+        </template>
+
         <button
-          v-for="city in props.cities.filter(item => item.id !== 'san-francisco')"
+          v-else
+          v-for="city in props.cities"
           :key="city.id"
           class="w-full rounded-xl border p-4 text-left transition"
           :class="city.id === props.activeCityId
@@ -80,7 +103,11 @@ function handleSelect(cityId: CityId) {
         </button>
       </div>
 
-      <button class="mt-auto rounded-xl border border-dashed border-white/25 px-4 py-3 text-xs font-semibold tracking-[0.12em] text-slate-400 uppercase transition hover:border-white/40 hover:text-white" type="button">
+      <button
+        class="mt-auto rounded-xl border border-dashed border-white/25 px-4 py-3 text-xs font-semibold tracking-[0.12em] text-slate-400 uppercase transition hover:border-white/40 hover:text-white"
+        type="button"
+        @click="handleAddCity"
+      >
         + Add City
       </button>
     </aside>
