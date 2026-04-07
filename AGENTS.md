@@ -13,14 +13,14 @@ This is the primary entrypoint for agent behavior in this repository.
 
 ## Folder Strategy
 - `agents/`: role-specific agent instructions
-- `skills/`: reusable implementation skills and checklists
-- `skills/external/`: imported third-party skills (local project copy)
+- `.agents/skills/`: project skills (Cursor auto-loads from here; see [Skills](https://cursor.com/docs/skills))
+- `.agents/skills/external/`: imported third-party skills (local project copy)
 
 ## Required Reading Order
 1. `AGENTS.md`
 2. `agents/frontend-agent.md` (default)
 3. `weather-app/AGENTS.md` when working inside app code
-4. Relevant files from `skills/**`
+4. Relevant files from `.agents/skills/**`
 
 ## Core Rules
 - Use TypeScript throughout

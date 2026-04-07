@@ -1,0 +1,23 @@
+---
+description: Nuxt server API quick rules for simple endpoint work
+globs: ["weather-app/server/api/**/*.ts"]
+alwaysApply: false
+---
+
+- Use `defineEventHandler` for standard handlers in `server/api`.
+- For cacheable GET routes, prefer `cachedEventHandler` with explicit `maxAge`.
+- Keep secrets server-side and read them via `useRuntimeConfig(event)`.
+- Return stable JSON shapes (`{ data, meta }` or `{ error }`).
+- Validate query/body input before calling external APIs.
+
+Example 15-minute cache pattern:
+
+```ts
+export default cachedEventHandler(async (event) => {
+  const city = getQuery(event).city || 'Berlin'
+  return { data: { city } }
+}, {
+  maxAge: 60 * 15,
+  swr: true,
+})
+```

@@ -9,4 +9,4 @@
 - Prefer behavior assertions over implementation details
 
 ## Skill References
-- `skills/testing/unit-testing.md`
+- `.agents/skills/testing/unit-testing.md`

@@ -17,6 +17,6 @@
 - Keep classes framework-agnostic where practical (portable utility semantics)
 
 ## Skill References
-- `skills/vue/patterns.md`
-- `skills/vue/performance.md`
-- `skills/nuxt/data-fetching.md`
+- `.agents/skills/vue/patterns.md`
+- `.agents/skills/vue/performance.md`
+- `.agents/skills/nuxt/data-fetching.md`

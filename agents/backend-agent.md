@@ -10,5 +10,5 @@
 - Keep handlers small and testable
 
 ## Skill References
-- `skills/nuxt/server-api.md`
-- `skills/testing/unit-testing.md`
+- `.agents/skills/nuxt/server-api.md`
+- `.agents/skills/testing/unit-testing.md`
