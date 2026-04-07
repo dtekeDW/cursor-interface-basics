@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Icon } from '#components'
 import type { RadarCard } from '~/types/weather'
+import { Icon } from '#components'
 
 defineProps<{
   radar: RadarCard
@@ -8,26 +8,26 @@ defineProps<{
 </script>
 
 <template>
-  <section class="relative overflow-hidden rounded-[1.75rem] border border-white/10">
-    <img :src="radar.imageUrl" :alt="radar.imageAlt" class="h-[280px] w-full object-cover md:h-[360px]" >
+  <section class="group relative h-96 overflow-hidden rounded-[2rem] border border-white/5 shadow-2xl">
+    <img :src="radar.imageUrl" :alt="radar.imageAlt" class="h-full w-full object-cover">
 
     <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0d0d18]/25 to-transparent" />
 
-    <div class="absolute left-4 top-4 flex flex-col gap-2 sm:left-6 sm:top-6">
-      <span class="rounded-full border border-white/15 bg-[#1b1a26]/65 px-4 py-2 text-[11px] font-bold tracking-[0.12em] uppercase">
+    <div class="absolute top-6 left-6 flex flex-col gap-2">
+      <span class="rounded-full border border-white/10 bg-[#1b1a26]/40 px-4 py-2 text-[0.6875rem] font-bold tracking-widest uppercase">
         Live Radar
       </span>
-      <span class="rounded-full border border-primary/25 bg-[#1b1a26]/65 px-4 py-2 text-[11px] font-bold tracking-[0.12em] text-primary uppercase">
+      <span class="rounded-full border border-white/10 bg-[#1b1a26]/40 px-4 py-2 text-[0.6875rem] font-bold tracking-widest text-primary uppercase">
         {{ radar.precipitationLabel }}
       </span>
     </div>
 
-    <div class="absolute bottom-4 right-4 flex gap-2 sm:bottom-6 sm:right-6">
-      <button class="grid h-12 w-12 place-items-center rounded-full border border-white/15 bg-[#1b1a26]/65 text-white transition hover:bg-[#1b1a26]" type="button" aria-label="Zoom in radar">
-        <Icon name="ph:plus" class="text-2xl" />
+    <div class="absolute bottom-6 right-6 flex gap-2">
+      <button class="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-[#1b1a26]/40 text-white backdrop-blur-[40px] transition hover:bg-white/10" type="button" aria-label="Zoom in radar">
+        <Icon name="ph:plus" class="text-sm" />
       </button>
-      <button class="grid h-12 w-12 place-items-center rounded-full border border-white/15 bg-[#1b1a26]/65 text-white transition hover:bg-[#1b1a26]" type="button" aria-label="Zoom out radar">
-        <Icon name="ph:minus" class="text-2xl" />
+      <button class="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-[#1b1a26]/40 text-white backdrop-blur-[40px] transition hover:bg-white/10" type="button" aria-label="Zoom out radar">
+        <Icon name="ph:minus" class="text-sm" />
       </button>
     </div>
   </section>

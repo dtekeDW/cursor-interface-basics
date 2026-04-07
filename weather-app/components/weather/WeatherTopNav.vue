@@ -10,14 +10,14 @@ const navItems = [
 </script>
 
 <template>
-  <header class="fixed top-0 z-50 h-16 w-full border-b border-white/6 bg-[#0d0d18]/80 backdrop-blur-xl">
-    <div class="mx-auto flex h-full max-w-[1600px] items-center justify-between px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center gap-2 text-sm font-bold tracking-[0.2em] text-slate-100 uppercase sm:text-base">
+  <header class="border-b border-white/6 bg-[#0d0d18]/80 h-16 w-full top-0 fixed z-50 backdrop-blur-xl">
+    <div class="mx-auto px-4 flex h-full max-w-[1600px] items-center justify-between lg:px-8 sm:px-6">
+      <div class="text-sm text-slate-100 tracking-[0.2em] font-bold flex gap-2 uppercase items-center sm:text-base">
         <span class="material-symbols-outlined text-primary text-lg">location_on</span>
         <span>{{ cityName }}</span>
       </div>
 
-      <nav class="hidden items-center gap-6 text-xs font-medium tracking-[0.18em] text-slate-400 uppercase md:flex">
+      <nav class="text-xs text-slate-400 tracking-[0.18em] font-medium gap-6 hidden uppercase items-center md:flex">
         <a
           v-for="item in navItems"
           :key="item"
@@ -29,12 +29,12 @@ const navItems = [
         </a>
       </nav>
 
-      <div class="flex items-center gap-3 text-slate-400">
-        <button class="rounded-full p-1 transition hover:text-white" type="button" aria-label="Open notifications">
+      <div class="text-slate-400 flex gap-3 items-center">
+        <button class="p-1 rounded-full transition hover:text-white" type="button" aria-label="Open notifications">
           <span class="material-symbols-outlined text-xl">notifications</span>
         </button>
 
-        <div class="hidden h-8 w-8 overflow-hidden rounded-full border border-white/15 md:block">
+        <div class="border border-white/15 rounded-full h-8 w-8 hidden overflow-hidden md:block">
           <img
             class="h-full w-full object-cover"
             alt="Profile avatar"

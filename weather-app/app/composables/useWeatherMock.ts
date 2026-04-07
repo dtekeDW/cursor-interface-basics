@@ -3,11 +3,11 @@ import type {
   CityWeather,
   WeatherCity,
 } from '~/types/weather'
-import { computed } from 'vue'
 import { useState } from '#imports'
+import { computed } from 'vue'
 
 const weatherByCity: Record<CityId, CityWeather> = {
-  koeln: {
+  'koeln': {
     city: {
       id: 'koeln',
       name: 'Köln',
@@ -59,7 +59,7 @@ const weatherByCity: Record<CityId, CityWeather> = {
       precipitationLabel: 'Precipitation: 0%',
     },
   },
-  frankfurt: {
+  'frankfurt': {
     city: { id: 'frankfurt', name: 'Frankfurt', localTime: '14:32', temperature: 18, condition: 'Partly Cloudy', icon: 'ph:cloud-sun-fill' },
     current: {
       locationLabel: 'Frankfurt',
@@ -103,7 +103,7 @@ const weatherByCity: Record<CityId, CityWeather> = {
       precipitationLabel: 'Precipitation: 18%',
     },
   },
-  hannover: {
+  'hannover': {
     city: { id: 'hannover', name: 'Hannover', localTime: '14:32', temperature: 14, condition: 'Light Rain', icon: 'ph:cloud-rain-fill' },
     current: {
       locationLabel: 'Hannover',
@@ -146,7 +146,7 @@ const weatherByCity: Record<CityId, CityWeather> = {
       precipitationLabel: 'Precipitation: 64%',
     },
   },
-  bremen: {
+  'bremen': {
     city: { id: 'bremen', name: 'Bremen', localTime: '14:32', temperature: 12, condition: 'Overcast', icon: 'ph:cloud-fill' },
     current: {
       locationLabel: 'Bremen',
@@ -236,7 +236,7 @@ const weatherByCity: Record<CityId, CityWeather> = {
 
 const cityOrder: CityId[] = ['koeln', 'frankfurt', 'hannover', 'bremen', 'san-francisco']
 
-export const useWeatherMock = () => {
+export function useWeatherMock() {
   const activeCityId = useState<CityId>('weather-active-city', () => 'koeln')
 
   const cities = computed<WeatherCity[]>(() => cityOrder.map(cityId => weatherByCity[cityId].city))

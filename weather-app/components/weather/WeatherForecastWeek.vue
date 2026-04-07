@@ -9,7 +9,7 @@ const props = defineProps<{
 const maxTemperature = computed(() => Math.max(...props.weekly.map(item => item.high)))
 const minTemperature = computed(() => Math.min(...props.weekly.map(item => item.low)))
 
-const getBarWidth = (high: number, low: number) => {
+function getBarWidth(high: number, low: number) {
   const range = Math.max(maxTemperature.value - minTemperature.value, 1)
   return `${Math.max(((high - low) / range) * 100, 25)}%`
 }
@@ -17,23 +17,25 @@ const getBarWidth = (high: number, low: number) => {
 
 <template>
   <section>
-    <h3 class="mb-4 text-[11px] font-bold tracking-[0.16em] text-slate-500 uppercase">7-Day Forecast</h3>
+    <h3 class="text-[11px] text-slate-500 tracking-[0.16em] font-bold mb-4 uppercase">
+      7-Day Forecast
+    </h3>
 
-    <div class="hidden rounded-[1.5rem] border border-white/10 bg-white/4 p-4 md:block">
+    <div class="p-4 border border-white/10 rounded-[1.5rem] bg-white/4 hidden md:block">
       <article
         v-for="day in props.weekly"
         :key="day.id"
-        class="flex items-center justify-between gap-3 rounded-xl px-3 py-3 transition hover:bg-white/6"
+        class="px-3 py-3 rounded-xl flex gap-3 transition items-center justify-between hover:bg-white/6"
       >
-        <span class="w-10 text-sm font-medium text-slate-300">{{ day.day }}</span>
+        <span class="text-sm text-slate-300 font-medium w-10">{{ day.day }}</span>
         <span class="material-symbols-outlined text-primary">{{ day.icon }}</span>
 
-        <div class="flex flex-1 items-center gap-3">
-          <span class="text-xs font-semibold text-slate-500">{{ day.low }}°</span>
-          <div class="h-1.5 flex-1 rounded-full bg-surface-variant/80">
-            <div class="h-full rounded-full bg-gradient-to-r from-primary/75 to-primary" :style="{ width: getBarWidth(day.high, day.low) }" />
+        <div class="flex flex-1 gap-3 items-center">
+          <span class="text-xs text-slate-500 font-semibold">{{ day.low }}°</span>
+          <div class="bg-surface-variant/80 rounded-full flex-1 h-1.5">
+            <div class="from-primary/75 to-primary rounded-full h-full bg-gradient-to-r" :style="{ width: getBarWidth(day.high, day.low) }" />
           </div>
-          <span class="text-base font-bold text-white">{{ day.high }}°</span>
+          <span class="text-base text-white font-bold">{{ day.high }}°</span>
         </div>
       </article>
     </div>
@@ -42,12 +44,12 @@ const getBarWidth = (high: number, low: number) => {
       <article
         v-for="day in props.weekly"
         :key="`mobile-${day.id}`"
-        class="flex items-center justify-between rounded-xl border border-white/10 bg-white/4 px-4 py-3"
+        class="px-4 py-3 border border-white/10 rounded-xl bg-white/4 flex items-center justify-between"
       >
-        <span class="w-14 text-xl text-slate-100 leading-none">{{ day.day }}</span>
+        <span class="text-xl text-slate-100 leading-none w-14">{{ day.day }}</span>
         <span class="material-symbols-outlined text-primary">{{ day.icon }}</span>
-        <div class="flex items-baseline gap-3">
-          <span class="text-2xl font-semibold text-white leading-none">{{ day.high }}°</span>
+        <div class="flex gap-3 items-baseline">
+          <span class="text-2xl text-white leading-none font-semibold">{{ day.high }}°</span>
           <span class="text-2xl text-slate-500 leading-none">{{ day.low }}°</span>
         </div>
       </article>

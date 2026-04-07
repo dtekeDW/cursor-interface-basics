@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useHead, useSeoMeta } from '#imports'
 import WeatherForecastWeek from '~/components/weather/WeatherForecastWeek.vue'
 import WeatherHeroCard from '~/components/weather/WeatherHeroCard.vue'
 import WeatherHourlyStrip from '~/components/weather/WeatherHourlyStrip.vue'
@@ -6,7 +7,6 @@ import WeatherMetricGrid from '~/components/weather/WeatherMetricGrid.vue'
 import WeatherRadarCard from '~/components/weather/WeatherRadarCard.vue'
 import WeatherSidebarCities from '~/components/weather/WeatherSidebarCities.vue'
 import { useWeatherMock } from '~/composables/useWeatherMock'
-import { useHead, useSeoMeta } from '#imports'
 
 const {
   activeCityId,
@@ -42,28 +42,30 @@ useHead({
 </script>
 
 <template>
-  <div class="mx-auto max-w-[1600px] px-4 pb-32 pt-20 sm:px-6 lg:px-8 lg:pb-12">
+  <div class="mx-auto max-w-[1600px] px-4 pt-20 pb-32 sm:px-6 lg:px-8 lg:pb-12">
     <div class="space-y-6 lg:flex lg:gap-8 lg:space-y-0">
       <WeatherSidebarCities :cities="cities" :active-city-id="activeCityId" @select="selectCity" />
 
-      <main class="flex-1 space-y-8 lg:pt-4">
+      <main class="flex-1 space-y-10 lg:pt-4">
         <WeatherHeroCard :current="activeWeather.current" />
 
         <WeatherHourlyStrip :hourly="activeWeather.hourly" />
 
-        <div class="grid grid-cols-1 gap-6 xl:grid-cols-12">
+        <div class="grid grid-cols-1 gap-8 xl:grid-cols-12">
           <div class="xl:col-span-4">
             <WeatherForecastWeek :weekly="activeWeather.weekly" />
           </div>
 
-          <div class="space-y-6 xl:col-span-8">
+          <div class="space-y-8 xl:col-span-8">
             <WeatherRadarCard :radar="activeWeather.radar" />
             <WeatherMetricGrid :metrics="activeWeather.metrics" />
           </div>
         </div>
 
-        <footer class="pt-6 text-center text-[11px] font-semibold tracking-[0.22em] text-slate-500 uppercase">
-          Last Updated: Oct 24, 14:45 Local Time
+        <footer class="mt-20 mb-10 text-center opacity-40">
+          <p class="text-[0.6875rem] font-bold tracking-[0.2rem] uppercase">
+            Last Updated: Oct 24, 14:45 Local Time
+          </p>
         </footer>
       </main>
     </div>

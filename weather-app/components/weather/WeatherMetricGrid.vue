@@ -7,23 +7,27 @@ const props = defineProps<{
 </script>
 
 <template>
-  <section class="grid grid-cols-2 gap-4 lg:grid-cols-4">
+  <section class="gap-4 grid grid-cols-2 lg:grid-cols-4">
     <article
       v-for="metric in props.metrics"
       :key="metric.id"
-      class="rounded-[1.5rem] border border-white/10 bg-white/4 p-5"
+      class="p-5 border border-white/10 rounded-[1.5rem] bg-white/4"
     >
-      <div class="mb-5 flex items-center justify-between gap-2">
-        <p class="text-[11px] font-semibold tracking-[0.1em] text-slate-400 uppercase">{{ metric.label }}</p>
+      <div class="mb-5 flex gap-2 items-center justify-between">
+        <p class="text-[11px] text-slate-400 tracking-[0.1em] font-semibold uppercase">
+          {{ metric.label }}
+        </p>
         <span class="material-symbols-outlined text-primary text-lg">{{ metric.icon }}</span>
       </div>
 
-      <p class="text-5xl font-semibold leading-none sm:text-4xl lg:text-5xl">
+      <p class="text-5xl leading-none font-semibold lg:text-5xl sm:text-4xl">
         {{ metric.value }}
         <span class="text-2xl text-slate-400">{{ metric.unit }}</span>
       </p>
 
-      <p class="mt-3 text-[11px] font-medium tracking-[0.1em] text-slate-500 uppercase">{{ metric.detail }}</p>
+      <p class="text-[11px] text-slate-500 tracking-[0.1em] font-medium mt-3 uppercase">
+        {{ metric.detail }}
+      </p>
     </article>
   </section>
 </template>

@@ -12,10 +12,10 @@ export default defineNuxtConfig({
     '@nuxt/scripts',
     '@nuxtjs/i18n',
     '@nuxtjs/seo',
-    '@vueuse/nuxt'
+    '@vueuse/nuxt',
   ],
 
   css: [
-    '@unocss/reset/tailwind-v4.css'
-  ]
+    '@unocss/reset/tailwind-v4.css',
+  ],
 })

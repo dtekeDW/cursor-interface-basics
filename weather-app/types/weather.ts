@@ -1,6 +1,6 @@
 export type CityId = 'koeln' | 'frankfurt' | 'hannover' | 'bremen' | 'san-francisco'
 
-export type WeatherCity = {
+export interface WeatherCity {
   id: CityId
   name: string
   localTime: string
@@ -9,7 +9,7 @@ export type WeatherCity = {
   icon: string
 }
 
-export type CurrentWeather = {
+export interface CurrentWeather {
   locationLabel: string
   timeLabel: string
   temperature: number
@@ -21,7 +21,7 @@ export type CurrentWeather = {
   heroImageAlt: string
 }
 
-export type HourlyForecastItem = {
+export interface HourlyForecastItem {
   id: string
   time: string
   temperature: number
@@ -29,7 +29,7 @@ export type HourlyForecastItem = {
   isNow?: boolean
 }
 
-export type WeeklyForecastItem = {
+export interface WeeklyForecastItem {
   id: string
   day: string
   high: number
@@ -37,7 +37,7 @@ export type WeeklyForecastItem = {
   icon: string
 }
 
-export type WeatherMetric = {
+export interface WeatherMetric {
   id: string
   label: string
   value: string
@@ -46,13 +46,13 @@ export type WeatherMetric = {
   icon: string
 }
 
-export type RadarCard = {
+export interface RadarCard {
   imageUrl: string
   imageAlt: string
   precipitationLabel: string
 }
 
-export type CityWeather = {
+export interface CityWeather {
   city: WeatherCity
   current: CurrentWeather
   hourly: HourlyForecastItem[]

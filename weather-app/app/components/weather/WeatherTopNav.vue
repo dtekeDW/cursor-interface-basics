@@ -12,31 +12,31 @@ const navItems = [
 </script>
 
 <template>
-  <header class="fixed top-0 z-50 h-16 w-full border-b border-white/6 bg-[#0d0d18]/80 backdrop-blur-xl">
+  <header class="fixed top-0 z-50 h-16 w-full border-b border-white/6 bg-[#0d0d18]/80 shadow-[0_8px_32px_rgba(13,13,24,0.5)] backdrop-blur-xl">
     <div class="mx-auto flex h-full max-w-[1600px] items-center justify-between px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center gap-2 text-sm font-bold tracking-[0.2em] text-[#f0ecff] uppercase sm:text-base">
-        <Icon name="ph:map-pin-fill" class="text-2xl text-[#ffb68d]" />
+      <div class="flex items-center gap-3 text-lg font-bold tracking-widest text-slate-100 uppercase">
+        <Icon name="ph:map-pin-fill" class="text-lg text-[#ffb68d]" />
         <span>{{ cityName }}</span>
       </div>
 
-      <nav class="hidden items-center gap-6 text-xs font-medium tracking-[0.18em] text-slate-400 uppercase md:flex">
+      <nav class="hidden items-center gap-8 md:flex">
         <a
           v-for="item in navItems"
           :key="item"
           href="#"
-          class="transition-colors"
+          class="text-sm font-medium tracking-widest uppercase transition-opacity"
           :class="item === 'Dashboard' ? 'text-[#ffb68d]' : 'hover:text-white'"
         >
           {{ item }}
         </a>
       </nav>
 
-      <div class="flex items-center gap-3 text-slate-400">
-        <button class="rounded-full p-1 transition hover:text-white" type="button" aria-label="Open notifications">
-          <Icon name="ph:bell" class="text-2xl" />
+      <div class="text-slate-400 flex gap-3 items-center">
+        <button class="p-1 rounded-full transition hover:text-white" type="button" aria-label="Open notifications">
+          <Icon name="ph:bell" class="text-lg" />
         </button>
 
-        <div class="hidden h-8 w-8 overflow-hidden rounded-full border border-white/15 md:block">
+        <div class="border border-white/15 rounded-full h-8 w-8 hidden overflow-hidden md:block">
           <img
             class="h-full w-full object-cover"
             alt="Profile avatar"

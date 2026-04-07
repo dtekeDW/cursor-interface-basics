@@ -1,0 +1,10 @@
+{
+  "name": "cursor-interface-basics",
+  "private": true,
+  "packageManager": "pnpm@10.18.3",
+  "scripts": {
+    "lint": "pnpm --dir weather-app lint",
+    "typecheck": "pnpm --dir weather-app typecheck",
+    "build": "pnpm --dir weather-app build"
+  }
+}

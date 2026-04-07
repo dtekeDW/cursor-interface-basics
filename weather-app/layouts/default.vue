@@ -9,9 +9,9 @@ const {
 </script>
 
 <template>
-  <div class="relative min-h-screen bg-[#0d0d18] text-[#e3e0f1]">
-    <div class="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_80%_15%,rgba(255,182,141,0.16),rgba(13,13,24,0)_52%)]" />
-    <div class="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_15%_60%,rgba(59,130,246,0.10),rgba(13,13,24,0)_45%)]" />
+  <div class="text-[#e3e0f1] bg-[#0d0d18] min-h-screen relative">
+    <div class="bg-[radial-gradient(circle_at_80%_15%,rgba(255,182,141,0.16),rgba(13,13,24,0)_52%)] pointer-events-none inset-0 fixed" />
+    <div class="bg-[radial-gradient(circle_at_15%_60%,rgba(59,130,246,0.10),rgba(13,13,24,0)_45%)] pointer-events-none inset-0 fixed" />
 
     <WeatherTopNav :city-name="activeWeather.current.locationLabel" />
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Icon } from '#components'
 import type { WeatherMetric } from '~/types/weather'
+import { Icon } from '#components'
 
 const props = defineProps<{
   metrics: WeatherMetric[]
@@ -8,23 +8,27 @@ const props = defineProps<{
 </script>
 
 <template>
-  <section class="grid grid-cols-2 gap-4 lg:grid-cols-4">
+  <section class="grid grid-cols-2 gap-6 md:grid-cols-4">
     <article
       v-for="metric in props.metrics"
       :key="metric.id"
-      class="rounded-[1.5rem] border border-white/10 bg-white/4 p-5"
+      class="rounded-[1.5rem] border border-white/5 bg-white/4 p-6"
     >
-      <div class="mb-5 flex items-center justify-between gap-2">
-        <p class="text-[11px] font-semibold tracking-[0.1em] text-slate-400 uppercase">{{ metric.label }}</p>
-        <Icon :name="metric.icon" class="text-3xl text-primary" />
+      <div class="flex items-center justify-between text-slate-400">
+        <p class="text-[0.6875rem] font-bold tracking-widest uppercase">
+          {{ metric.label }}
+        </p>
+        <Icon :name="metric.icon" class="text-sm text-[#ffb68d]" />
       </div>
 
-      <p class="text-5xl font-semibold leading-none sm:text-4xl lg:text-5xl">
+      <p class="mt-4 text-2xl font-bold">
         {{ metric.value }}
-        <span class="text-2xl text-slate-400">{{ metric.unit }}</span>
+        <span class="text-xs font-medium text-slate-400">{{ metric.unit }}</span>
       </p>
 
-      <p class="mt-3 text-[11px] font-medium tracking-[0.1em] text-slate-500 uppercase">{{ metric.detail }}</p>
+      <p class="mt-1 text-xs tracking-wider text-slate-500 uppercase">
+        {{ metric.detail }}
+      </p>
     </article>
   </section>
 </template>
