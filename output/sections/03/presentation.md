@@ -12,11 +12,11 @@
 
 ## Checklist
 
-- [ ] **Four modes** table + mnemonic: Ask / Plan / Agent / Debug.
-- [ ] **When not Agent:** questions-only → **Ask**; big change → **Plan**.
-- [ ] **Read-only vs edits:** Ask+Plan vs Agent+Debug (talk-level; fine print in docs).
-- [ ] Show **mode switcher** + **Shift+Tab** if available in build.
-- [ ] Link [Plan](https://cursor.com/docs/agent/plan-mode.md) + [Debug](https://cursor.com/docs/agent/debug-mode.md).
+- **Four modes** table + mnemonic: Ask / Plan / Agent / Debug.
+- **When not Agent:** questions-only → **Ask**; big change → **Plan**.
+- **Read-only vs edits:** Ask+Plan vs Agent+Debug (talk-level; fine print in docs).
+- Show **mode switcher** + **Shift+Tab** if available in build.
+- Link [Plan](https://cursor.com/docs/agent/plan-mode.md) + [Debug](https://cursor.com/docs/agent/debug-mode.md).
 
 ## Fallback
 

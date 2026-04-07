@@ -7,7 +7,7 @@ Short **30-minute** talk plus **10 minutes** Q&A: Cursor’s agent UI, context, 
 - **[workshop.md](workshop.md)** — Agenda, doc links, compact speaking beats, parking lot.
 - **[cheatsheet.md](cheatsheet.md)** — One-page reminders (modes, `@`, context window, compaction, **keyboard shortcuts**—verify in your Cursor build).
 - **Cursor 3:** mentioned as a **short teaser** at the end (**Section 06**); use [Changelog](https://cursor.com/changelog.md) for current facts.
-- **`output/sections/01` … `06`** — Speaker checklist (`presentation.md`) and Marp-friendly slides (`slides.md`).
+- `**output/sections/01` … `06`** — Speaker checklist (`presentation.md`) and Marp-friendly slides (`slides.md`).
 
 ## Official documentation
 

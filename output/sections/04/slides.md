@@ -1,8 +1,8 @@
 ---
-marp: true
+
+## marp: true
 paginate: true
 footer: 'Cursor basics — Section 04'
----
 
 # Persistent control
 
@@ -12,10 +12,12 @@ Rules · **AGENTS.md** · [Agenda](../../../workshop.md)
 
 # One-off vs defaults
 
-| Mechanism | When |
-| --------- | ---- |
-| **`@` / attach** | This message |
+
+| Mechanism          | When          |
+| ------------------ | ------------- |
+| `**@` / attach**   | This message  |
 | **Rules + AGENTS** | Every session |
+
 
 ---
 
