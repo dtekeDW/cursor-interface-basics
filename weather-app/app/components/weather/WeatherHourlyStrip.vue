@@ -20,14 +20,17 @@ const props = defineProps<{
         :key="hour.id"
         class="w-24 shrink-0 rounded-[1.25rem] border p-4 text-center transition sm:w-28 sm:p-5"
         :class="hour.isNow
-          ? 'border-primary/35 bg-primary/10 shadow-[0_0_24px_rgba(255,182,141,0.15)]'
+          ? 'border-[#ffb68d]/45 bg-[rgba(255,182,141,0.14)] shadow-[0_0_26px_rgba(255,182,141,0.16)]'
           : 'border-white/10 bg-white/4 hover:border-white/20'"
       >
-        <p class="text-[11px] font-semibold tracking-[0.08em] text-slate-300 uppercase">
+        <p
+          class="text-[11px] font-semibold tracking-[0.08em] uppercase"
+          :class="hour.isNow ? 'text-[#ffb68d]' : 'text-slate-300'"
+        >
           {{ hour.time }}
         </p>
 
-        <Icon :name="hour.icon" class="my-3 text-5xl text-primary" />
+        <Icon :name="hour.icon" class="my-3 text-5xl" :class="hour.isNow ? 'text-[#ffb68d]' : 'text-slate-100'" />
 
         <p class="text-3xl font-semibold leading-none">{{ hour.temperature }}°</p>
       </article>

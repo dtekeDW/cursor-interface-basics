@@ -9,10 +9,14 @@ const props = defineProps<{
 
 const maxTemperature = computed(() => Math.max(...props.weekly.map(item => item.high)))
 const minTemperature = computed(() => Math.min(...props.weekly.map(item => item.low)))
+const totalRange = computed(() => Math.max(maxTemperature.value - minTemperature.value, 1))
 
 const getBarWidth = (high: number, low: number) => {
-  const range = Math.max(maxTemperature.value - minTemperature.value, 1)
-  return `${Math.max(((high - low) / range) * 100, 25)}%`
+  return `${Math.max(((high - low) / totalRange.value) * 100, 18)}%`
+}
+
+const getBarOffset = (low: number) => {
+  return `${((low - minTemperature.value) / totalRange.value) * 100}%`
 }
 </script>
 
@@ -24,17 +28,20 @@ const getBarWidth = (high: number, low: number) => {
       <article
         v-for="day in props.weekly"
         :key="day.id"
-        class="flex items-center justify-between gap-3 rounded-xl px-3 py-3 transition hover:bg-white/6"
+        class="group flex items-center justify-between gap-3 rounded-xl px-4 py-3 transition-all hover:bg-white/10"
       >
-        <span class="w-10 text-sm font-medium text-slate-300">{{ day.day }}</span>
-        <Icon :name="day.icon" class="text-2xl text-primary" />
+        <span class="w-10 text-4.5 font-medium text-slate-300 transition-colors group-hover:text-slate-100">{{ day.day }}</span>
+        <Icon :name="day.icon" class="text-2xl text-slate-200 transition-colors group-hover:text-primary" />
 
         <div class="flex flex-1 items-center gap-3">
           <span class="text-xs font-semibold text-slate-500">{{ day.low }}°</span>
           <div class="h-1.5 flex-1 rounded-full bg-surface-variant/80">
-            <div class="h-full rounded-full bg-gradient-to-r from-primary/75 to-primary" :style="{ width: getBarWidth(day.high, day.low) }" />
+            <div
+              class="h-full rounded-full bg-gradient-to-r from-[#ffb68d]/75 to-[#ffa34f] transition-all group-hover:from-[#ffb68d] group-hover:to-[#ff8e2b]"
+              :style="{ width: getBarWidth(day.high, day.low), marginLeft: getBarOffset(day.low) }"
+            />
           </div>
-          <span class="text-base font-bold text-white">{{ day.high }}°</span>
+          <span class="text-base font-bold text-white transition-colors group-hover:text-primary">{{ day.high }}°</span>
         </div>
       </article>
     </div>

@@ -14,8 +14,8 @@ const navItems = [
 <template>
   <header class="fixed top-0 z-50 h-16 w-full border-b border-white/6 bg-[#0d0d18]/80 backdrop-blur-xl">
     <div class="mx-auto flex h-full max-w-[1600px] items-center justify-between px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center gap-2 text-sm font-bold tracking-[0.2em] text-slate-100 uppercase sm:text-base">
-        <Icon name="ph:map-pin-fill" class="text-2xl text-primary" />
+      <div class="flex items-center gap-2 text-sm font-bold tracking-[0.2em] text-[#f0ecff] uppercase sm:text-base">
+        <Icon name="ph:map-pin-fill" class="text-2xl text-[#ffb68d]" />
         <span>{{ cityName }}</span>
       </div>
 
@@ -25,7 +25,7 @@ const navItems = [
           :key="item"
           href="#"
           class="transition-colors"
-          :class="item === 'Dashboard' ? 'text-primary' : 'hover:text-white'"
+          :class="item === 'Dashboard' ? 'text-[#ffb68d]' : 'hover:text-white'"
         >
           {{ item }}
         </a>

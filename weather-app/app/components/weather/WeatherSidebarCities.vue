@@ -26,7 +26,9 @@ const handleSelect = (cityId: CityId) => {
         v-for="city in props.cities"
         :key="city.id"
         class="min-w-[128px] rounded-xl border p-4 text-left transition"
-        :class="city.id === props.activeCityId ? 'border-primary/35 bg-primary/10 text-white' : 'border-white/10 bg-white/5 text-slate-300 hover:border-white/20'"
+        :class="city.id === props.activeCityId
+          ? 'border-[#ffb68d]/45 bg-[rgba(255,182,141,0.14)] text-white shadow-[0_0_22px_rgba(255,182,141,0.12)]'
+          : 'border-white/10 bg-white/5 text-slate-300 hover:border-white/20'"
         type="button"
         @click="handleSelect(city.id)"
       >
@@ -43,7 +45,9 @@ const handleSelect = (cityId: CityId) => {
           v-for="city in props.cities.filter(item => item.id !== 'san-francisco')"
           :key="city.id"
           class="w-full rounded-xl border p-4 text-left transition"
-          :class="city.id === props.activeCityId ? 'border-primary/40 bg-primary/10' : 'border-white/10 bg-white/3 hover:border-white/20'"
+          :class="city.id === props.activeCityId
+            ? 'border-[#ffb68d]/45 bg-[rgba(255,182,141,0.10)] shadow-[0_0_22px_rgba(255,182,141,0.10)]'
+            : 'border-white/10 bg-white/3 hover:border-white/20'"
           type="button"
           @click="handleSelect(city.id)"
         >
@@ -52,12 +56,12 @@ const handleSelect = (cityId: CityId) => {
               <p class="text-xs text-slate-400">Local Time: {{ city.localTime }}</p>
               <p class="text-2xl font-semibold text-slate-100 leading-tight">{{ city.name }}</p>
             </div>
-            <p class="text-4xl font-light text-primary">{{ city.temperature }}°</p>
+            <p class="text-4xl font-light" :class="city.id === props.activeCityId ? 'text-[#ffb68d]' : 'text-slate-300'">{{ city.temperature }}°</p>
           </div>
 
           <div class="flex items-center justify-between">
             <p class="text-sm text-slate-400">{{ city.condition }}</p>
-            <Icon :name="city.icon" class="text-xl text-slate-300" />
+            <Icon :name="city.icon" class="text-xl" :class="city.id === props.activeCityId ? 'text-[#ffb68d]' : 'text-slate-300'" />
           </div>
         </button>
       </div>
