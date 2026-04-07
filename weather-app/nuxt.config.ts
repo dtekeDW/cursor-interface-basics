@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   modules: [
+    '@unocss/nuxt',
     '@nuxt/a11y',
     '@nuxt/fonts',
     '@nuxt/icon',
@@ -12,5 +13,9 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxtjs/seo',
     '@vueuse/nuxt'
+  ],
+
+  css: [
+    '@unocss/reset/tailwind-v4.css'
   ]
 })
