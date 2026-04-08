@@ -4,24 +4,30 @@ paginate: true
 footer: 'Cursor basics — Section 05'
 ---
 
-# Skills (short)
+# Section 05 — Skills (+ Rules quick compare)
 
-[Agenda](../../../workshop.md)
+**Skills**
+- reusable capability packages
+- own folder + `SKILL.md`
+- optional: `scripts/`, `references/`, `assets/`
 
----
-
-# What & when
-
-- **Reusable** instructions / workflows.
-- Best when the **same pattern** repeats (reviews, releases, …).
+Docs: [Skills](https://cursor.com/docs/skills)
 
 ---
 
-# How to discover
+# Skills settings / invocation
 
-- Product UI for **Skills** + `/` menu (varies by build).
-- **Cheatsheet:** [cheatsheet.md](../../../cheatsheet.md)
+- auto invocation by relevance (default)
+- explicit-only possible (`disable-model-invocation: true`)
+- manual invoke via `/skill-name`
 
-[Skills docs](https://cursor.com/docs/skills.md)
+---
 
-→ **Section 06 — Workflows + close**
+# Rules vs Skills (quick)
+
+- **Rules**: indirect defaults / policy / guardrails
+- **Skills**: actionable workflows and domain tasks
+
+Docs: [Rules](https://cursor.com/docs/rules)
+
+Next: **Demo flow (Ask + Plan + Instructions + Skills)**

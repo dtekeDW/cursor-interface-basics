@@ -1,36 +1,32 @@
 ---
-
-## marp: true
+marp: true
 paginate: true
 footer: 'Cursor basics — Section 04'
+---
 
-# Persistent control
+# Section 04 — AGENTS.md
 
-Rules · **AGENTS.md** · [Agenda](../../../workshop.md)
+`AGENTS.md` = persistent project behavior for agents.
+
+Put in there:
+- tech stack
+- coding conventions
+- testing expectations
+- do/don’t rules
+- project paths and commands
+
+Docs: [Rules](https://cursor.com/docs/rules)
 
 ---
 
-# One-off vs defaults
+# Minimal AGENTS.md structure
 
+1. Project context
+2. Build/dev/test commands
+3. Coding standards
+4. Agent skill routing
+5. Verification before handoff
 
-| Mechanism          | When          |
-| ------------------ | ------------- |
-| `**@` / attach**   | This message  |
-| **Rules + AGENTS** | Every session |
+Keep it short, explicit, and repo-specific.
 
-
----
-
-# Rules stack (concept)
-
-- **User** · **Team** · **Project** — **order / precedence** = read [Rules](https://cursor.com/docs/rules.md).
-
----
-
-# AGENTS.md
-
-- Repo-level **instructions** for the agent—pair with rules, not replace them.
-
-[Rules (Help)](https://cursor.com/help/customization/rules.md)
-
-→ **Section 05 — Skills**
+Next: **Skills + Rules relationship**

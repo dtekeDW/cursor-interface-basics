@@ -4,49 +4,30 @@ paginate: true
 footer: 'Cursor basics — Section 06'
 ---
 
-# Two workflows
+# Section 06 — Mini Demo
 
-[Agenda](../../../workshop.md)
+Live flow in one task:
+1. **Ask** → understand codebase/API requirement
+2. **Plan** → propose implementation steps
+3. **Agent** → execute with project instructions + skills
 
----
-
-# A — Onboard foreign code
-
-1. **Ask** — “How does auth work?”
-2. **Plan** — scoped change.
-3. **Agent** — implement.
+Docs: [Plan mode](https://cursor.com/docs/agent/plan-mode)
 
 ---
 
-# B — UI or bug
+# Demo prompt skeleton
 
-- Screenshot / **browser** context in chat.
-- **Agent** or **Debug** depending on depth.
-
-[Browser tool](https://cursor.com/docs/agent/tools/browser.md)
-
----
-
-# MCP (teaser)
-
-- Connect **external** tools & data—details in docs, not today.
-
-[MCP](https://cursor.com/docs/mcp.md)
+“Analyze first, then propose plan, then implement.
+Use AGENTS.md + matching skills.
+Show changed files + validation output.”
 
 ---
 
-# Cursor 3 & what’s next
+# Demo success criteria
 
-- Cursor ships in **generations** (e.g. **Cursor 3**)—UI and agent workflows **keep evolving**.
-- **Don’t memorize** a feature list here: open **[Changelog](https://cursor.com/changelog.md)** + **cursor.com** the week you present.
+- uses correct mode transitions
+- pulls correct context with `@`
+- follows AGENTS.md + skills
+- returns concise, verifiable output
 
-*This deck is Cursor **2.x–style** basics; your build may already show newer UI.*
-
----
-
-# Thanks — Q&A
-
-- **Cheatsheet:** [cheatsheet.md](../../../cheatsheet.md) (shortcuts + modes + context)
-- **Docs:** [cursor.com/docs](https://cursor.com/docs) · [llms.txt](https://cursor.com/llms.txt)
-
-**Q&A — 10 min**
+Docs: [Agent overview](https://cursor.com/docs/agent/overview)

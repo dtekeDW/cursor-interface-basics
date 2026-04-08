@@ -4,36 +4,32 @@ paginate: true
 footer: 'Cursor basics — Section 03'
 ---
 
-# Modes — core of the talk
+# Section 03 — Chat Controls & Context
 
-[Agenda](../../../workshop.md)
+- Enter: queue next message
+- Cmd/Ctrl+Enter: send now
+- model selector + mode selector in chat header
+- attach context via `@`
 
----
-
-# Four modes
-
-| Mode | Job |
-| ---- | --- |
-| **Ask** | **Understand** |
-| **Plan** | **Structure** |
-| **Agent** | **Do** |
-| **Debug** | **Find causes** |
+Docs: [Agent overview](https://cursor.com/docs/agent/overview)
 
 ---
 
-# When to leave default Agent
+# Mentions (`@`) that matter
 
-- **Only questions**, no edits → **Ask**.
-- **Large / risky** change → **Plan** first.
+- files/folders
+- docs/links
+- screenshots/images
+- previous chat context (if needed)
 
-[Plan mode](https://cursor.com/docs/agent/plan-mode.md)
+Goal: keep context explicit and relevant.
 
 ---
 
-# Switching
+# Context window quick rule
 
-- UI **dropdown** + (often) **Shift+Tab** — **verify in your build**.
+- watch context usage indicator
+- if too full: new thread + re-attach critical files
+- avoid “everything in one giant chat”
 
-[Agent overview](https://cursor.com/docs/agent/overview.md)
-
-→ **Section 04 — Rules + AGENTS.md**
+Next: **AGENTS.md**

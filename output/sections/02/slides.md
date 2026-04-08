@@ -4,49 +4,24 @@ paginate: true
 footer: 'Cursor basics — Section 02'
 ---
 
-# Interface + context
+# Section 02 — Modes
 
-Panel · model · `@` · **context ring** · [Agenda](../../../workshop.md)
+Use this mental model:
 
----
+- **Ask** → understand
+- **Plan** → structure
+- **Agent** → execute
+- **Debug** → isolate root cause
 
-# Panel & model
-
-- **Model** picker in chat/agent UI.
-- Optional **BYOK / providers** — [API keys](https://cursor.com/help/models-and-usage/api-keys.md)
-
----
-
-# `@` (one pass)
-
-| Use | Why |
-| --- | --- |
-| Files / folders | Scope |
-| Docs / images | Specs & UI |
-
-[Context](https://cursor.com/help/customization/context.md)
+Docs: [Plan mode](https://cursor.com/docs/agent/plan-mode)
 
 ---
 
-# Queue vs interrupt
+# Practical default flow
 
-- **Enter** → message **queues** after current work.
-- **⌘ Enter / Ctrl+Enter** → **now** (urgent fix)—labels vary.
+1. Ask for quick understanding
+2. Plan for larger/riskier tasks
+3. Agent for implementation
+4. Debug only when behavior is unclear/flaky
 
----
-
-# Context ring + compaction
-
-- **Ring / circle** = **context window** fill (this chat’s **token budget**).
-- **High?** New chat · smaller `@` · **commit** stable work.
-- **Compaction:** old turns may be **summarized**—critical facts → **re-attach** files or new thread.
-
----
-
-# Indexing (one line)
-
-- Codebase **index** powers smart search—control noise with **`.cursorignore`**.
-
-[Indexing](https://cursor.com/help/customization/indexing.md) · [Ignore](https://cursor.com/help/customization/ignore-files.md)
-
-→ **Section 03 — Modes**
+Next: **Chat controls + mentions**
