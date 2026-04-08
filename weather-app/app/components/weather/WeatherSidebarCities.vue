@@ -30,8 +30,8 @@ function handleAddCity() {
     <div class="hide-scrollbar flex gap-3 overflow-x-auto pb-2 lg:hidden">
       <template v-if="props.isLoading">
         <div v-for="item in 3" :key="`mobile-skeleton-${item}`" class="min-w-[128px] rounded-xl border border-white/10 bg-white/5 p-4">
-          <div class="h-3 w-16 rounded bg-white/12 animate-pulse" />
-          <div class="mt-3 h-9 w-12 rounded bg-white/12 animate-pulse" />
+          <div class="h-2.5 w-14 rounded bg-white/10 animate-pulse" />
+          <div class="mt-2.5 h-7 w-10 rounded bg-white/10 animate-pulse" />
         </div>
       </template>
 
@@ -63,9 +63,9 @@ function handleAddCity() {
       <div class="space-y-3 overflow-y-auto pr-2">
         <template v-if="props.isLoading">
           <div v-for="item in 4" :key="`desktop-skeleton-${item}`" class="w-full rounded-xl border border-white/10 bg-white/4 p-4">
-            <div class="h-3 w-24 rounded bg-white/12 animate-pulse" />
-            <div class="mt-3 h-7 w-28 rounded bg-white/12 animate-pulse" />
-            <div class="mt-3 h-3 w-20 rounded bg-white/12 animate-pulse" />
+            <div class="h-2.5 w-[5.5rem] rounded bg-white/10 animate-pulse" />
+            <div class="mt-2.5 h-6 w-24 rounded bg-white/10 animate-pulse" />
+            <div class="mt-2.5 h-2.5 w-[4.5rem] rounded bg-white/10 animate-pulse" />
           </div>
         </template>
 
