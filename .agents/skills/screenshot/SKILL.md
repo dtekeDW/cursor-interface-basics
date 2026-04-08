@@ -1,6 +1,13 @@
 ---
-name: "screenshot"
-description: "Use when the user explicitly asks for a desktop or system screenshot (full screen, specific app or window, or a pixel region), or when tool-specific capture capabilities are unavailable and an OS-level capture is needed."
+name: screenshot
+description: Use when an OS-level screenshot is required (full screen, app window, or region capture).
+license: See LICENSE.txt
+compatibility:
+  os: [macos, linux]
+  tools: [python3]
+metadata:
+  source: external
+  importedFor: cursor-interface-basics
 ---
 
 

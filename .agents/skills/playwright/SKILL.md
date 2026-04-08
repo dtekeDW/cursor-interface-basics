@@ -1,6 +1,13 @@
 ---
-name: "playwright"
-description: "Use when the task requires automating a real browser from the terminal (navigation, form filling, snapshots, screenshots, data extraction, UI-flow debugging) via `playwright-cli` or the bundled wrapper script."
+name: playwright
+description: Use when real-browser automation is needed for navigation, UI debugging, screenshots, or data extraction.
+license: See LICENSE.txt
+compatibility:
+  os: [macos, linux]
+  tools: [node, npx, playwright-cli]
+metadata:
+  source: external
+  importedFor: cursor-interface-basics
 ---
 
 

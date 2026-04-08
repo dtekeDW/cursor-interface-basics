@@ -9,7 +9,7 @@ import WeatherMetricGrid from '~/components/weather/WeatherMetricGrid.vue'
 import WeatherRadarCard from '~/components/weather/WeatherRadarCard.vue'
 import WeatherSidebarCities from '~/components/weather/WeatherSidebarCities.vue'
 import { useWeatherData } from '~/composables/useWeatherData'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const {
   activeCityId,
@@ -17,10 +17,17 @@ const {
   activeWeather,
   addCity,
   cities,
+  initialize,
   isActiveCityLoading,
   isSidebarLoading,
   selectCity,
 } = useWeatherData()
+
+await initialize({ includeAllCities: false })
+
+onMounted(() => {
+  void initialize({ includeAllCities: true })
+})
 
 const isAddCityModalOpen = ref(false)
 

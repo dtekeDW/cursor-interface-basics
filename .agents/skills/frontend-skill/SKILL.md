@@ -1,6 +1,13 @@
 ---
 name: frontend-skill
-description: Use when the task asks for a visually strong landing page, website, app, prototype, demo, or game UI. This skill enforces restrained composition, image-led hierarchy, cohesive content structure, and tasteful motion while avoiding generic cards, weak branding, and UI clutter.
+description: Use when the task requires strong visual direction for landing pages, apps, prototypes, or demos.
+license: See LICENSE.txt
+compatibility:
+  framework: [vue3, nuxt4]
+  styling: [unocss, tailwind-utilities]
+metadata:
+  source: external
+  importedFor: cursor-interface-basics
 ---
 
 # Frontend Skill

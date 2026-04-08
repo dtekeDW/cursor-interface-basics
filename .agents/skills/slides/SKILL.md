@@ -1,6 +1,13 @@
 ---
 name: slides
-description: Create and edit presentation slide decks (`.pptx`) with PptxGenJS, bundled layout helpers, and render/validation utilities. Use when tasks involve building a new PowerPoint deck, recreating slides from screenshots/PDFs/reference decks, modifying slide content while preserving editable output, adding charts/diagrams/visuals, or diagnosing layout issues such as overflow, overlaps, and font substitution.
+description: Use when creating or editing PowerPoint decks (.pptx) with reproducible script-based workflows.
+license: See LICENSE.txt
+compatibility:
+  os: [macos, linux]
+  tools: [python3, libreoffice, pptxgenjs]
+metadata:
+  source: external
+  importedFor: cursor-interface-basics
 ---
 
 # Slides

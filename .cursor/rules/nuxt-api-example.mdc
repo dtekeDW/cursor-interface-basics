@@ -1,9 +1,7 @@
 ---
 description: Nuxt server API quick rules for simple endpoint work
-globs: ["weather-app/server/api/**/*.ts"]
 alwaysApply: false
 ---
-
 - Use `defineEventHandler` for standard handlers in `server/api`.
 - For cacheable GET routes, prefer `cachedEventHandler` with explicit `maxAge`.
 - Keep secrets server-side and read them via `useRuntimeConfig(event)`.

@@ -1,6 +1,13 @@
 ---
-name: "doc"
-description: "Use when the task involves reading, creating, or editing `.docx` documents, especially when formatting or layout fidelity matters; prefer `python-docx` plus the bundled `scripts/render_docx.py` for visual checks."
+name: doc
+description: Use when the task involves reading, creating, or editing .docx files where layout fidelity matters.
+license: See LICENSE.txt
+compatibility:
+  os: [macos, linux]
+  tools: [python3, python-docx, libreoffice, poppler]
+metadata:
+  source: external
+  importedFor: cursor-interface-basics
 ---
 
 

@@ -14,7 +14,6 @@ This is the primary entrypoint for agent behavior in this repository.
 ## Folder Strategy
 - `agents/`: role-specific agent instructions
 - `.agents/skills/`: project skills (Cursor auto-loads from here; see [Skills](https://cursor.com/docs/skills))
-- `.agents/skills/external/`: imported third-party skills (local project copy)
 
 ## Required Reading Order
 1. `AGENTS.md`
