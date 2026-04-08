@@ -37,9 +37,11 @@ const CONDITION_BY_CODE: Record<number, string> = {
   99: 'Thunderstorm',
 }
 
+/** Maps Open-Meteo weather codes to UI-friendly condition labels. */
 const getConditionFromCode = (weatherCode: number) => CONDITION_BY_CODE[weatherCode] ?? 'Unknown'
 
-const getIconFromCode = (weatherCode: number, isDay = true) => {
+/** Maps Open-Meteo weather codes to icon names, including day/night variants. */
+function getIconFromCode(weatherCode: number, isDay = true) {
   if (weatherCode === 0)
     return isDay ? 'ph:sun-fill' : 'ph:moon-stars-fill'
 
@@ -61,7 +63,8 @@ const getIconFromCode = (weatherCode: number, isDay = true) => {
   return isDay ? 'ph:sun-fill' : 'ph:moon-stars-fill'
 }
 
-const formatLocalTime = (timezone: string) => {
+/** Formats current local time for sidebar city chips. */
+function formatLocalTime(timezone: string) {
   return new Intl.DateTimeFormat('de-DE', {
     hour: '2-digit',
     minute: '2-digit',
@@ -70,7 +73,8 @@ const formatLocalTime = (timezone: string) => {
   }).format(new Date())
 }
 
-const formatCurrentTimeLabel = (timezone: string) => {
+/** Formats current local time for the hero card label. */
+function formatCurrentTimeLabel(timezone: string) {
   return new Intl.DateTimeFormat('en-US', {
     hour: '2-digit',
     minute: '2-digit',
@@ -79,7 +83,8 @@ const formatCurrentTimeLabel = (timezone: string) => {
   }).format(new Date())
 }
 
-const formatHourLabel = (isoTime: string, timezone: string) => {
+/** Formats an hourly forecast timestamp in 24h format for timeline items. */
+function formatHourLabel(isoTime: string, timezone: string) {
   return new Intl.DateTimeFormat('en-GB', {
     hour: '2-digit',
     minute: '2-digit',
@@ -88,7 +93,8 @@ const formatHourLabel = (isoTime: string, timezone: string) => {
   }).format(new Date(isoTime))
 }
 
-const toCompass = (degrees: number) => {
+/** Converts degrees into a compass direction label. */
+function toCompass(degrees: number) {
   const normalized = ((degrees % 360) + 360) % 360
   if (normalized < 22.5 || normalized >= 337.5)
     return 'North'
@@ -107,7 +113,8 @@ const toCompass = (degrees: number) => {
   return 'North West'
 }
 
-const toUvUnit = (uvIndex: number) => {
+/** Converts a UV index value into a concise risk label for the UI. */
+function toUvUnit(uvIndex: number) {
   if (uvIndex >= 8)
     return 'Very High'
   if (uvIndex >= 6)
@@ -117,7 +124,8 @@ const toUvUnit = (uvIndex: number) => {
   return 'Low'
 }
 
-const buildHourly = (raw: any, timezone: string): HourlyForecastItem[] => {
+/** Builds the next 24 hourly forecast points used in the hourly strip. */
+function buildHourly(raw: any, timezone: string): HourlyForecastItem[] {
   const times = raw.hourly?.time ?? []
   const temperatures = raw.hourly?.temperature_2m ?? []
   const weatherCodes = raw.hourly?.weather_code ?? []
@@ -132,7 +140,8 @@ const buildHourly = (raw: any, timezone: string): HourlyForecastItem[] => {
   }))
 }
 
-const buildWeekly = (raw: any): WeeklyForecastItem[] => {
+/** Builds the seven-day forecast used in the weekly widget. */
+function buildWeekly(raw: any): WeeklyForecastItem[] {
   const dailyTimes = raw.daily?.time ?? []
   const maxTemperatures = raw.daily?.temperature_2m_max ?? []
   const minTemperatures = raw.daily?.temperature_2m_min ?? []
@@ -147,7 +156,8 @@ const buildWeekly = (raw: any): WeeklyForecastItem[] => {
   }))
 }
 
-const buildMetrics = (raw: any): WeatherMetric[] => {
+/** Builds compact weather metrics cards from current, daily, and hourly provider fields. */
+function buildMetrics(raw: any): WeatherMetric[] {
   const humidity = Math.round(Number(raw.current?.relative_humidity_2m ?? 0))
   const windSpeed = Math.round(Number(raw.current?.wind_speed_10m ?? 0))
   const windDirection = Number(raw.current?.wind_direction_10m ?? 0)
@@ -195,7 +205,23 @@ const buildMetrics = (raw: any): WeatherMetric[] => {
   ]
 }
 
-export const normalizeGeocodeResults = (raw: any): GeocodeResult[] => {
+/**
+ * Normalizes raw geocoding payload into validated city candidates.
+ *
+ * This mapper filters incomplete entries so downstream UI/store logic can rely
+ * on required fields being present and typed.
+ *
+ * @param raw Raw Open-Meteo geocoding response.
+ * @returns Sanitized list of geocode results.
+ *
+ * @example
+ * ```ts
+ * const result = normalizeGeocodeResults({
+ *   results: [{ name: 'Cologne', country: 'Germany', timezone: 'Europe/Berlin', latitude: 50.94, longitude: 6.96 }],
+ * })
+ * ```
+ */
+export function normalizeGeocodeResults(raw: any): GeocodeResult[] {
   const results = Array.isArray(raw?.results) ? raw.results : []
 
   return results
@@ -221,7 +247,22 @@ export const normalizeGeocodeResults = (raw: any): GeocodeResult[] => {
     .filter((item: GeocodeResult | null): item is GeocodeResult => item !== null)
 }
 
-export const normalizeForecastPayload = (raw: any, timezone: string): ForecastCoreSnapshot => {
+/**
+ * Normalizes raw forecast payload into the app's view model snapshot.
+ *
+ * The output is a fully composed structure for hero, hourly, weekly, and
+ * metrics widgets, so UI components do not need provider-specific mapping.
+ *
+ * @param raw Raw Open-Meteo forecast response.
+ * @param timezone IANA timezone used for localized labels.
+ * @returns UI-ready weather snapshot.
+ *
+ * @example
+ * ```ts
+ * const snapshot = normalizeForecastPayload(providerResponse, 'Europe/Berlin')
+ * ```
+ */
+export function normalizeForecastPayload(raw: any, timezone: string): ForecastCoreSnapshot {
   const currentCode = Number(raw.current?.weather_code ?? 0)
   const currentIsDay = Number(raw.current?.is_day ?? 1) === 1
   const currentTemperature = Math.round(Number(raw.current?.temperature_2m ?? 0))

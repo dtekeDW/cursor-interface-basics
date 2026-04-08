@@ -2,50 +2,55 @@
 import type { CurrentWeather } from '~/types/weather'
 import { Icon } from '#components'
 
-defineProps<{
+interface WeatherHeroCardProps {
+  /** Current weather values rendered in the hero section. */
   current: CurrentWeather
+  /** Loading flag used to render skeleton placeholders. */
   isLoading?: boolean
-}>()
+}
+
+/** Props for the primary weather hero card. */
+defineProps<WeatherHeroCardProps>()
 </script>
 
 <template>
-  <section class="group relative min-h-[500px] overflow-hidden rounded-[2.5rem] border border-white/10 p-8 lg:p-16">
+  <section class="group p-8 border border-white/10 rounded-[2.5rem] min-h-[500px] relative overflow-hidden lg:p-16">
     <img
       :src="current.heroImageUrl"
       :alt="current.heroImageAlt"
-      class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+      class="h-full w-full transition-transform duration-700 inset-0 absolute object-cover group-hover:scale-105"
     >
 
-    <div class="absolute inset-0 bg-gradient-to-t from-[#0d0d18] via-transparent to-transparent" />
-    <div class="absolute inset-0 bg-gradient-to-r from-[#0d0d18]/40 to-transparent" />
+    <div class="inset-0 absolute from-[#0d0d18] to-transparent via-transparent bg-gradient-to-t" />
+    <div class="inset-0 absolute from-[#0d0d18]/40 to-transparent bg-gradient-to-r" />
 
-    <div class="relative z-10 mt-auto flex h-full flex-col justify-end">
+    <div class="mt-auto flex flex-col h-full justify-end relative z-10">
       <template v-if="isLoading">
-        <div class="mb-2 flex items-end gap-6">
-          <div class="h-32 w-56 rounded-2xl bg-white/10 animate-pulse lg:h-40 lg:w-72" />
+        <div class="mb-2 flex gap-6 items-end">
+          <div class="rounded-2xl bg-white/10 h-32 w-56 animate-pulse lg:h-40 lg:w-72" />
           <div class="mb-6 space-y-3">
-            <div class="h-10 w-44 rounded-xl bg-white/10 animate-pulse" />
-            <div class="h-5 w-32 rounded-xl bg-white/10 animate-pulse" />
+            <div class="rounded-xl bg-white/10 h-10 w-44 animate-pulse" />
+            <div class="rounded-xl bg-white/10 h-5 w-32 animate-pulse" />
           </div>
         </div>
 
         <div class="flex gap-3">
-          <div class="h-9 w-20 rounded-full bg-white/10 animate-pulse" />
-          <div class="h-9 w-20 rounded-full bg-white/10 animate-pulse" />
+          <div class="rounded-full bg-white/10 h-9 w-20 animate-pulse" />
+          <div class="rounded-full bg-white/10 h-9 w-20 animate-pulse" />
         </div>
       </template>
 
       <template v-else>
-        <div class="mb-2 flex items-end gap-6">
-          <h1 class="text-[8rem] font-extrabold leading-none tracking-tighter text-white drop-shadow-[0_0_20px_rgba(255,182,141,0.3)] lg:text-[10rem]">
+        <div class="mb-2 flex gap-6 items-end">
+          <h1 class="text-[8rem] text-white leading-none tracking-tighter font-extrabold drop-shadow-[0_0_20px_rgba(255,182,141,0.3)] lg:text-[10rem]">
             {{ current.temperature }}°
           </h1>
 
           <div class="mb-6">
-            <h2 class="mb-2 text-4xl font-bold text-white lg:text-5xl">
+            <h2 class="text-4xl text-white font-bold mb-2 lg:text-5xl">
               {{ current.locationLabel }}
             </h2>
-            <p class="flex items-center gap-2 text-lg font-medium text-primary">
+            <p class="text-primary text-lg font-medium flex gap-2 items-center">
               {{ current.condition }}
               <Icon :name="current.icon" class="text-xl" />
             </p>
@@ -53,10 +58,10 @@ defineProps<{
         </div>
 
         <div class="flex gap-3">
-          <span class="rounded-full border border-white/10 bg-[#1b1a26]/40 px-4 py-2 text-xs font-bold tracking-widest uppercase">
+          <span class="text-xs tracking-widest font-bold px-4 py-2 border border-white/10 rounded-full bg-[#1b1a26]/40 uppercase">
             H: {{ current.high }}°
           </span>
-          <span class="rounded-full border border-white/10 bg-[#1b1a26]/40 px-4 py-2 text-xs font-bold tracking-widest uppercase">
+          <span class="text-xs tracking-widest font-bold px-4 py-2 border border-white/10 rounded-full bg-[#1b1a26]/40 uppercase">
             L: {{ current.low }}°
           </span>
         </div>

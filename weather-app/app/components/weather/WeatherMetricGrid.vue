@@ -2,23 +2,28 @@
 import type { WeatherMetric } from '~/types/weather'
 import { Icon } from '#components'
 
-const props = defineProps<{
+interface WeatherMetricGridProps {
+  /** Metric cards shown below radar (wind, UV, humidity, visibility). */
   metrics: WeatherMetric[]
+  /** Loading flag used to render skeleton placeholders. */
   isLoading?: boolean
-}>()
+}
+
+/** Props for the compact weather metric grid. */
+const props = defineProps<WeatherMetricGridProps>()
 </script>
 
 <template>
-  <section class="grid grid-cols-2 gap-6 md:grid-cols-4">
+  <section class="gap-6 grid grid-cols-2 md:grid-cols-4">
     <template v-if="props.isLoading">
       <article
         v-for="item in 4"
         :key="`metric-skeleton-${item}`"
-        class="rounded-[1.5rem] border border-white/5 bg-white/4 p-6"
+        class="p-6 border border-white/5 rounded-[1.5rem] bg-white/4"
       >
-        <div class="h-3 w-14 rounded bg-white/12 animate-pulse" />
-        <div class="mt-6 h-8 w-16 rounded bg-white/12 animate-pulse" />
-        <div class="mt-2 h-3 w-20 rounded bg-white/12 animate-pulse" />
+        <div class="rounded bg-white/12 h-3 w-14 animate-pulse" />
+        <div class="mt-6 rounded bg-white/12 h-8 w-16 animate-pulse" />
+        <div class="mt-2 rounded bg-white/12 h-3 w-20 animate-pulse" />
       </article>
     </template>
 
@@ -26,21 +31,21 @@ const props = defineProps<{
       <article
         v-for="metric in props.metrics"
         :key="metric.id"
-        class="rounded-[1.5rem] border border-white/5 bg-white/4 p-6"
+        class="p-6 border border-white/5 rounded-[1.5rem] bg-white/4"
       >
-        <div class="flex items-center justify-between text-slate-400">
-          <p class="text-[0.6875rem] font-bold tracking-widest uppercase">
+        <div class="text-slate-400 flex items-center justify-between">
+          <p class="text-[0.6875rem] tracking-widest font-bold uppercase">
             {{ metric.label }}
           </p>
           <Icon :name="metric.icon" class="text-sm text-[#ffb68d]" />
         </div>
 
-        <p class="mt-4 text-2xl font-bold">
+        <p class="text-2xl font-bold mt-4">
           {{ metric.value }}
-          <span class="text-xs font-medium text-slate-400">{{ metric.unit }}</span>
+          <span class="text-xs text-slate-400 font-medium">{{ metric.unit }}</span>
         </p>
 
-        <p class="mt-1 text-xs tracking-wider text-slate-500 uppercase">
+        <p class="text-xs text-slate-500 tracking-wider mt-1 uppercase">
           {{ metric.detail }}
         </p>
       </article>

@@ -1,8 +1,15 @@
 <script setup lang="ts">
 import { Icon } from '#components'
 
-defineProps<{ cityName: string }>()
+interface WeatherTopNavProps {
+  /** Active city name shown in the top-left location badge. */
+  cityName: string
+}
 
+/** Top navigation props for location-aware weather context. */
+defineProps<WeatherTopNavProps>()
+
+/** Static navigation labels used by the desktop top bar. */
 const navItems = [
   'Dashboard',
   'Forecast',
@@ -12,19 +19,19 @@ const navItems = [
 </script>
 
 <template>
-  <header class="fixed top-0 z-50 h-16 w-full border-b border-white/6 bg-[#0d0d18]/80 shadow-[0_8px_32px_rgba(13,13,24,0.5)] backdrop-blur-xl">
-    <div class="mx-auto flex h-full max-w-[1600px] items-center justify-between px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center gap-3 text-lg font-bold tracking-widest text-slate-100 uppercase">
+  <header class="border-b border-white/6 bg-[#0d0d18]/80 h-16 w-full shadow-[0_8px_32px_rgba(13,13,24,0.5)] top-0 fixed z-50 backdrop-blur-xl">
+    <div class="mx-auto px-4 flex h-full max-w-[1600px] items-center justify-between lg:px-8 sm:px-6">
+      <div class="text-lg text-slate-100 tracking-widest font-bold flex gap-3 uppercase items-center">
         <Icon name="ph:map-pin-fill" class="text-lg text-[#ffb68d]" />
         <span>{{ cityName }}</span>
       </div>
 
-      <nav class="hidden items-center gap-8 md:flex">
+      <nav class="gap-8 hidden items-center md:flex">
         <a
           v-for="item in navItems"
           :key="item"
           href="#"
-          class="text-sm font-medium tracking-widest uppercase transition-opacity"
+          class="text-sm tracking-widest font-medium uppercase transition-opacity"
           :class="item === 'Dashboard' ? 'text-[#ffb68d]' : 'hover:text-white'"
         >
           {{ item }}

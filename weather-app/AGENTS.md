@@ -13,6 +13,7 @@ App-specific instructions for `weather-app`.
 - Nuxt 4 + Vue 3 + TypeScript
 - UnoCSS with `presetWind4`
 - Tailwind v4 reset via `@unocss/reset/tailwind-v4.css`
+- Always use TSDOC whenever we add code in manner of logic that is longer than a couple lines of code
 
 ## Coding Conventions
 - Use `<script setup lang="ts">`

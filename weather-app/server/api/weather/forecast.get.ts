@@ -1,14 +1,27 @@
 import type { ForecastApiResponse } from '../../../app/types/weather'
 import { useRuntimeConfig } from '#imports'
 import { useStorage } from 'nitropack/runtime'
-import { withApiBuilder, getOptionalNumberQuery, getNumberQuery, getStringQuery, ApiBuilderError } from '../../utils/apiBuilder'
+import { ApiBuilderError, getNumberQuery, getOptionalNumberQuery, getStringQuery, withApiBuilder } from '../../utils/apiBuilder'
 import { normalizeForecastPayload } from '../../utils/openMeteoMapper'
 
-type CachedForecast = {
+/** Cached forecast payload with absolute expiration timestamp (epoch ms). */
+interface CachedForecast {
   expiresAt: number
   payload: ForecastApiResponse
 }
 
+/**
+ * Forecast endpoint for a concrete coordinate + timezone.
+ *
+ * - Validates request query params (`lat`, `lon`, `tz`, optional `hours`).
+ * - Serves fresh data from Nitro storage cache when available.
+ * - Fetches from weather provider and normalizes payload for UI consumption.
+ *
+ * @example
+ * ```txt
+ * GET /api/weather/forecast?lat=48.2082&lon=16.3738&tz=Europe/Vienna&hours=24
+ * ```
+ */
 const forecastHandler = withApiBuilder<ForecastApiResponse>(async (event): Promise<ForecastApiResponse> => {
   const latitude = getNumberQuery(event, 'lat', { min: -90, max: 90 })
   const longitude = getNumberQuery(event, 'lon', { min: -180, max: 180 })

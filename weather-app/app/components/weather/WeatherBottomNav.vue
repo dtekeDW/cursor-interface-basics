@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Icon } from '#components'
 
+/** Static mobile navigation items for the bottom action bar. */
 const navItems = [
   { id: 'dashboard', label: 'Dashboard', icon: 'ph:squares-four', active: true },
   { id: 'forecast', label: 'Forecast', icon: 'ph:calendar-dots', active: false },

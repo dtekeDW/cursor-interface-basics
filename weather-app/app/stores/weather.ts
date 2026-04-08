@@ -68,56 +68,62 @@ const DEFAULT_CITIES: CityMeta[] = [
 ]
 const DEFAULT_CITY = DEFAULT_CITIES[0]!
 
-const slugify = (value: string) => value
-  .toLowerCase()
-  .normalize('NFD')
-  .replaceAll(/\p{Diacritic}/gu, '')
-  .replaceAll(/[^a-z0-9]+/g, '-')
-  .replaceAll(/^-|-$/g, '')
+function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .normalize('NFD')
+    .replaceAll(/\p{Diacritic}/gu, '')
+    .replaceAll(/[^a-z0-9]+/g, '-')
+    .replaceAll(/^-|-$/g, '')
+}
 
-const toCityId = (name: string, country: string, latitude: number, longitude: number) => {
+function toCityId(name: string, country: string, latitude: number, longitude: number) {
   return `${slugify(name)}-${slugify(country)}-${latitude.toFixed(4)}-${longitude.toFixed(4)}`
 }
 
-const toFallbackCoreSnapshot = (): ForecastCoreSnapshot => ({
-  localTime: '--:--',
-  current: {
-    timeLabel: '--:--',
-    temperature: 0,
-    high: 0,
-    low: 0,
-    condition: 'Loading',
-    icon: 'ph:cloud-fill',
-  },
-  hourly: [],
-  weekly: [],
-  metrics: [],
-  precipitationPercent: 0,
-})
+function toFallbackCoreSnapshot(): ForecastCoreSnapshot {
+  return {
+    localTime: '--:--',
+    current: {
+      timeLabel: '--:--',
+      temperature: 0,
+      high: 0,
+      low: 0,
+      condition: 'Loading',
+      icon: 'ph:cloud-fill',
+    },
+    hourly: [],
+    weekly: [],
+    metrics: [],
+    precipitationPercent: 0,
+  }
+}
 
-const toWeatherSnapshot = (city: CityMeta, core: ForecastCoreSnapshot): WeatherSnapshot => ({
-  current: {
-    locationLabel: city.name,
-    timeLabel: core.current.timeLabel,
-    temperature: core.current.temperature,
-    high: core.current.high,
-    low: core.current.low,
-    condition: core.current.condition,
-    icon: core.current.icon,
-    heroImageUrl: city.heroImageUrl,
-    heroImageAlt: city.heroImageAlt,
-  },
-  hourly: core.hourly,
-  weekly: core.weekly,
-  metrics: core.metrics,
-  radar: {
-    imageUrl: city.radarImageUrl,
-    imageAlt: city.radarImageAlt,
-    precipitationLabel: `Precipitation: ${core.precipitationPercent}%`,
-  },
-})
+function toWeatherSnapshot(city: CityMeta, core: ForecastCoreSnapshot): WeatherSnapshot {
+  return {
+    current: {
+      locationLabel: city.name,
+      timeLabel: core.current.timeLabel,
+      temperature: core.current.temperature,
+      high: core.current.high,
+      low: core.current.low,
+      condition: core.current.condition,
+      icon: core.current.icon,
+      heroImageUrl: city.heroImageUrl,
+      heroImageAlt: city.heroImageAlt,
+    },
+    hourly: core.hourly,
+    weekly: core.weekly,
+    metrics: core.metrics,
+    radar: {
+      imageUrl: city.radarImageUrl,
+      imageAlt: city.radarImageAlt,
+      precipitationLabel: `Precipitation: ${core.precipitationPercent}%`,
+    },
+  }
+}
 
-const readCitiesFromStorage = (): CityMeta[] | null => {
+function readCitiesFromStorage(): CityMeta[] | null {
   if (!import.meta.client)
     return null
 
@@ -147,14 +153,14 @@ const readCitiesFromStorage = (): CityMeta[] | null => {
   }
 }
 
-const persistCities = (cities: CityMeta[]) => {
+function persistCities(cities: CityMeta[]) {
   if (!import.meta.client)
     return
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(cities))
 }
 
-const isSameCity = (left: CityMeta, right: CityMeta) => {
+function isSameCity(left: CityMeta, right: CityMeta) {
   const sameName = left.name.toLowerCase() === right.name.toLowerCase()
   const sameCountry = left.country.toLowerCase() === right.country.toLowerCase()
   const latitudeDiff = Math.abs(left.latitude - right.latitude)
@@ -260,7 +266,7 @@ export const useWeatherStore = defineStore('weather', () => {
         id: city.id || toCityId(city.name, city.country, city.latitude, city.longitude),
       }))
 
-      if (!citiesState.value.find(city => city.id === activeCityId.value))
+      if (!citiesState.value.some(city => city.id === activeCityId.value))
         activeCityId.value = citiesState.value[0]?.id ?? DEFAULT_CITY.id
     }
   }

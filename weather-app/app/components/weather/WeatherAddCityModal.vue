@@ -6,14 +6,23 @@ import type {
 import { Icon } from '#components'
 import { computed, ref, watch } from 'vue'
 
-const props = defineProps<{
+interface WeatherAddCityModalProps {
+  /** Controls modal visibility from the parent via v-model. */
   modelValue: boolean
-}>()
+}
 
-const emit = defineEmits<{
+interface WeatherAddCityModalEmits {
+  /** Sync event for v-model modal state. */
   'update:modelValue': [value: boolean]
-  select: [city: GeocodeResult]
-}>()
+  /** Selected city candidate to add into persistent city list. */
+  'select': [city: GeocodeResult]
+}
+
+/** Props for the add-city modal component. */
+const props = defineProps<WeatherAddCityModalProps>()
+
+/** Emits for modal state and selected city handoff. */
+const emit = defineEmits<WeatherAddCityModalEmits>()
 
 const searchValue = ref('')
 const isSearching = ref(false)
@@ -22,18 +31,37 @@ const selectedIndex = ref(0)
 const errorMessage = ref('')
 const debounceTimer = ref<number | null>(null)
 
+/** Computed empty-state flag used when search finished but returned no city candidates. */
 const hasNoResults = computed(() => !isSearching.value && searchValue.value.trim().length >= 2 && !results.value.length && !errorMessage.value)
 
-const closeModal = () => {
+/**
+ * Closes the modal by syncing `v-model` state back to the parent.
+ *
+ * @example
+ * ```ts
+ * closeModal()
+ * ```
+ */
+function closeModal() {
   emit('update:modelValue', false)
 }
 
-const handleSelect = (city: GeocodeResult) => {
+/**
+ * Emits a city selection and closes the modal in one user action.
+ *
+ * @param city Selected geocoding result.
+ */
+function handleSelect(city: GeocodeResult) {
   emit('select', city)
   emit('update:modelValue', false)
 }
 
-const searchCities = async (query: string) => {
+/**
+ * Queries the geocoding endpoint and updates result list state.
+ *
+ * @param query User-entered city query text.
+ */
+async function searchCities(query: string) {
   if (query.length < 2) {
     results.value = []
     errorMessage.value = ''
@@ -63,7 +91,12 @@ const searchCities = async (query: string) => {
   }
 }
 
-const handleInput = (value: string) => {
+/**
+ * Handles text input with debounce to reduce request pressure during typing.
+ *
+ * @param value Raw input value from the search field.
+ */
+function handleInput(value: string) {
   searchValue.value = value
 
   if (debounceTimer.value)
@@ -74,7 +107,12 @@ const handleInput = (value: string) => {
   }, 300)
 }
 
-const handleKeydown = (event: KeyboardEvent) => {
+/**
+ * Supports keyboard list navigation and submit behavior for accessibility.
+ *
+ * @param event Keyboard event from the search input.
+ */
+function handleKeydown(event: KeyboardEvent) {
   if (!results.value.length)
     return
 
@@ -96,6 +134,7 @@ const handleKeydown = (event: KeyboardEvent) => {
   }
 }
 
+/** Resets transient modal state every time the modal closes. */
 watch(() => props.modelValue, (isOpen) => {
   if (!isOpen) {
     searchValue.value = ''
@@ -110,18 +149,18 @@ watch(() => props.modelValue, (isOpen) => {
   <Teleport to="body">
     <div
       v-if="props.modelValue"
-      class="fixed inset-0 z-[70] flex items-center justify-center bg-[#07070f]/70 p-4 backdrop-blur-sm"
+      class="p-4 bg-[#07070f]/70 flex items-center inset-0 justify-center fixed z-[70] backdrop-blur-sm"
       @click.self="closeModal"
     >
-      <section class="w-full max-w-xl rounded-3xl border border-white/10 bg-[#111120]/95 p-6 shadow-[0_24px_80px_rgba(0,0,0,0.45)]">
+      <section class="p-6 border border-white/10 rounded-3xl bg-[#111120]/95 max-w-xl w-full shadow-[0_24px_80px_rgba(0,0,0,0.45)]">
         <div class="mb-4 flex items-center justify-between">
-          <h3 class="text-sm font-semibold tracking-[0.12em] text-slate-200 uppercase">
+          <h3 class="text-sm text-slate-200 tracking-[0.12em] font-semibold uppercase">
             Add City
           </h3>
 
           <button
             type="button"
-            class="grid h-8 w-8 place-items-center rounded-full border border-white/15 text-slate-300 transition hover:border-white/30 hover:text-white"
+            class="text-slate-300 border border-white/15 rounded-full grid h-8 w-8 transition place-items-center hover:text-white hover:border-white/30"
             aria-label="Close add city modal"
             @click="closeModal"
           >
@@ -129,7 +168,7 @@ watch(() => props.modelValue, (isOpen) => {
           </button>
         </div>
 
-        <label class="mb-3 block text-xs font-medium tracking-[0.08em] text-slate-400 uppercase" for="city-search-input">
+        <label class="text-xs text-slate-400 tracking-[0.08em] font-medium mb-3 block uppercase" for="city-search-input">
           Search City
         </label>
 
@@ -139,7 +178,7 @@ watch(() => props.modelValue, (isOpen) => {
             :value="searchValue"
             type="text"
             placeholder="Type city name, e.g. Hamburg"
-            class="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-[#ffb68d]/60"
+            class="text-sm text-slate-100 px-4 py-3 outline-none border border-white/15 rounded-xl bg-white/5 w-full transition placeholder:text-slate-500 focus:border-[#ffb68d]/60"
             @input="handleInput(($event.target as HTMLInputElement).value)"
             @keydown="handleKeydown"
           >
@@ -147,23 +186,23 @@ watch(() => props.modelValue, (isOpen) => {
           <Icon
             v-if="isSearching"
             name="ph:spinner"
-            class="absolute top-1/2 right-3 -translate-y-1/2 animate-spin text-slate-400"
+            class="text-slate-400 right-3 top-1/2 absolute animate-spin -translate-y-1/2"
           />
         </div>
 
-        <p v-if="errorMessage" class="mt-3 text-sm text-rose-300">
+        <p v-if="errorMessage" class="text-sm text-rose-300 mt-3">
           {{ errorMessage }}
         </p>
 
-        <p v-else-if="hasNoResults" class="mt-3 text-sm text-slate-400">
+        <p v-else-if="hasNoResults" class="text-sm text-slate-400 mt-3">
           No matching cities found.
         </p>
 
-        <ul v-else class="mt-4 max-h-72 space-y-2 overflow-y-auto pr-1">
+        <ul v-else class="mt-4 pr-1 max-h-72 overflow-y-auto space-y-2">
           <li v-for="(city, index) in results" :key="city.id">
             <button
               type="button"
-              class="w-full rounded-xl border px-4 py-3 text-left transition"
+              class="px-4 py-3 text-left border rounded-xl w-full transition"
               :class="index === selectedIndex
                 ? 'border-[#ffb68d]/55 bg-[rgba(255,182,141,0.14)] text-white'
                 : 'border-white/10 bg-white/4 text-slate-200 hover:border-white/20'"
@@ -172,7 +211,7 @@ watch(() => props.modelValue, (isOpen) => {
               <p class="text-sm font-semibold">
                 {{ city.name }}
               </p>
-              <p class="mt-1 text-xs text-slate-400">
+              <p class="text-xs text-slate-400 mt-1">
                 {{ city.country }} • {{ city.timezone }}
               </p>
             </button>

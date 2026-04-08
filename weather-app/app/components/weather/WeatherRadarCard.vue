@@ -2,35 +2,40 @@
 import type { RadarCard } from '~/types/weather'
 import { Icon } from '#components'
 
-defineProps<{
+interface WeatherRadarCardProps {
+  /** Radar image and precipitation summary for the active city. */
   radar: RadarCard
+  /** Loading flag used to render skeleton placeholders. */
   isLoading?: boolean
-}>()
+}
+
+/** Props for the radar teaser card. */
+defineProps<WeatherRadarCardProps>()
 </script>
 
 <template>
-  <section class="group relative h-96 overflow-hidden rounded-[2rem] border border-white/5 shadow-2xl">
+  <section class="group border border-white/5 rounded-[2rem] h-96 shadow-2xl relative overflow-hidden">
     <template v-if="isLoading">
-      <div class="h-full w-full bg-[linear-gradient(115deg,rgba(255,255,255,0.05)_20%,rgba(255,255,255,0.12)_40%,rgba(255,255,255,0.05)_60%)] bg-[length:200%_100%] animate-[weather-shimmer_2s_linear_infinite]" />
+      <div class="bg-[length:200%_100%] bg-[linear-gradient(115deg,rgba(255,255,255,0.05)_20%,rgba(255,255,255,0.12)_40%,rgba(255,255,255,0.05)_60%)] h-full w-full animate-[weather-shimmer_2s_linear_infinite]" />
     </template>
     <img v-else :src="radar.imageUrl" :alt="radar.imageAlt" class="h-full w-full object-cover">
 
-    <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0d0d18]/25 to-transparent" />
+    <div class="pointer-events-none inset-0 absolute from-[#0d0d18]/25 to-transparent bg-gradient-to-t" />
 
-    <div class="absolute top-6 left-6 flex flex-col gap-2">
-      <span class="rounded-full border border-white/10 bg-[#1b1a26]/40 px-4 py-2 text-[0.6875rem] font-bold tracking-widest uppercase">
+    <div class="flex flex-col gap-2 left-6 top-6 absolute">
+      <span class="text-[0.6875rem] tracking-widest font-bold px-4 py-2 border border-white/10 rounded-full bg-[#1b1a26]/40 uppercase">
         Live Radar
       </span>
-      <span class="rounded-full border border-white/10 bg-[#1b1a26]/40 px-4 py-2 text-[0.6875rem] font-bold tracking-widest text-primary uppercase">
+      <span class="text-primary text-[0.6875rem] tracking-widest font-bold px-4 py-2 border border-white/10 rounded-full bg-[#1b1a26]/40 uppercase">
         {{ radar.precipitationLabel }}
       </span>
     </div>
 
-    <div class="absolute bottom-6 right-6 flex gap-2">
-      <button class="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-[#1b1a26]/40 text-white backdrop-blur-[40px] transition hover:bg-white/10" type="button" aria-label="Zoom in radar">
+    <div class="flex gap-2 bottom-6 right-6 absolute">
+      <button class="text-white border border-white/10 rounded-full bg-[#1b1a26]/40 grid h-10 w-10 transition place-items-center backdrop-blur-[40px] hover:bg-white/10" type="button" aria-label="Zoom in radar">
         <Icon name="ph:plus" class="text-sm" />
       </button>
-      <button class="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-[#1b1a26]/40 text-white backdrop-blur-[40px] transition hover:bg-white/10" type="button" aria-label="Zoom out radar">
+      <button class="text-white border border-white/10 rounded-full bg-[#1b1a26]/40 grid h-10 w-10 transition place-items-center backdrop-blur-[40px] hover:bg-white/10" type="button" aria-label="Zoom out radar">
         <Icon name="ph:minus" class="text-sm" />
       </button>
     </div>
